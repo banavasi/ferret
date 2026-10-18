@@ -11,6 +11,12 @@
       "description": "Action-first, ADHD-friendly output shaping for Claude Code.",
       "source": "./",
       "category": "productivity"
+    },
+    {
+      "name": "dev-harness",
+      "description": "Straight-talk feedback, diagrams, STE docs, dev journal, explain-back, PR review, CI triage, exposure checks, bug reports.",
+      "source": "./plugins/dev-harness",
+      "category": "development"
     }
   ]
 }

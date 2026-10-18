@@ -9,6 +9,7 @@ on:
       - .claude-plugin/**
       - hooks/**
       - skills/**
+      - plugins/**
       - tests/test_always_on_hooks.py
       - .github/workflows/plugin-load-check.yml
   push:
@@ -27,6 +28,8 @@ jobs:
           python-version: "3.x"
       - name: Test native hook implementations
         run: python -m unittest tests.test_always_on_hooks -v
+      - name: Test dev-harness scripts and hook
+        run: python -m unittest discover -s plugins/dev-harness/tests -v
 
   load:
     runs-on: ubuntu-latest
@@ -40,8 +43,9 @@ jobs:
           mkdir -p "$CLAUDE_CONFIG_DIR"
           claude plugin marketplace add "$GITHUB_WORKSPACE"
           claude plugin install i-have-adhd@i-have-adhd
+          claude plugin install dev-harness@i-have-adhd
           claude plugin list | tee plugin-list.txt
-          grep -q "✔ enabled" plugin-list.txt || {
+          [ "$(grep -c "✔ enabled" plugin-list.txt)" -ge 2 ] || {
             echo "::error::plugin failed to load; see claude plugin list output above"
             exit 1
           }

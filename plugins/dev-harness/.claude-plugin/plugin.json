@@ -1,0 +1,11 @@
+{
+  "name": "dev-harness",
+  "version": "0.1.0",
+  "description": "A harness that makes you a better developer: straight-talk feedback, visual explanations, STE docs, a dev journal, explain-back quizzes for AI-written code, PR review, CI triage, exposure checks, and bug reports.",
+  "author": {
+    "name": "banavasi",
+    "url": "https://github.com/banavasi"
+  },
+  "license": "MIT",
+  "keywords": ["developer-growth", "documentation", "ste", "diagrams", "journal", "code-review", "ci", "security"]
+}
