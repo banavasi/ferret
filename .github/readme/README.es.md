@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="../../logo.png" alt="i-have-adhd" width="140" />
+  <img src="../../logo.png" alt="ferret" width="140" />
 </p>
 <p align="center">
   <strong align="center">Respuestas adaptadas para TDAH. ¡No se necesita diagnóstico de TDAH!</strong>
 </p>
 <p align="center">
-  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="License"></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/banavasi/ferret?style=flat" alt="License"></a>
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 Copia/pega en tu línea de comandos:
 
 ```text
-Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd, refer to the repo's AGENTS.md for instructions.
+Install the ferret skill/plugin from https://github.com/banavasi/ferret, refer to the repo's AGENTS.md for instructions.
 ```
 
 O 🔗 [consulta las instrucciones de instalación](../../INSTALL.md).
@@ -69,7 +69,7 @@ Una *skill* para tu asistente de código que evita que entierre la respuesta. Ac
 
 ## Las reglas
 
-10 reglas. Texto completo en [SKILL.md](../../skills/i-have-adhd/SKILL.md).
+10 reglas. Texto completo en [SKILL.md](../../skills/ferret/SKILL.md).
 
 1. Empieza con la siguiente acción.
 2. Numera las tareas de varios pasos.
@@ -84,16 +84,16 @@ Una *skill* para tu asistente de código que evita que entierre la respuesta. Ac
 
 ## Ajustarlo
 
-Haz un fork, edita `skills/i-have-adhd/SKILL.md`, luego intercambia tu copia:
+Haz un fork, edita `skills/ferret/SKILL.md`, luego intercambia tu copia:
 
 ```bash
-claude plugin uninstall i-have-adhd            # elimina la copia original primero:
-claude plugin marketplace remove i-have-adhd   # el fork y el original comparten ambos nombres
-claude plugin marketplace add <tu-usuario>/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
+claude plugin uninstall ferret            # elimina la copia original primero:
+claude plugin marketplace remove ferret   # el fork y el original comparten ambos nombres
+claude plugin marketplace add <tu-usuario>/ferret
+claude plugin install ferret@ferret
 ```
 
-Reinicia tu asistente de código y vuelve a invocar `/i-have-adhd`.
+Reinicia tu asistente de código y vuelve a invocar `/ferret`.
 
 ## Créditos
 

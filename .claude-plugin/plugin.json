@@ -1,9 +1,9 @@
 {
-  "name": "i-have-adhd",
-  "version": "0.4.1",
-  "description": "Shape Claude Code output for an ADHD reader: lead with the next action, number steps, suppress tangents, restate state, make wins visible.",
+  "name": "ferret",
+  "version": "1.0.0",
+  "description": "Ferret, your dedicated dev-day companion: auto-routes coding, debugging, review, docs, devops, and journaling.",
   "author": {
-    "name": "Ayoub G.",
-    "url": "https://github.com/ayghri"
+    "name": "banavasi",
+    "url": "https://github.com/banavasi"
   }
 }

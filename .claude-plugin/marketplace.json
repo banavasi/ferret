@@ -1,14 +1,14 @@
 {
   "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
-  "name": "i-have-adhd",
-  "description": "Shape Claude Code output for an ADHD reader. Action-first, numbered steps, no tangents.",
+  "name": "ferret",
+  "description": "Ferret, your dedicated dev-day companion for Claude Code. Auto-routes the whole engineering day.",
   "owner": {
-    "name": "Ayoub G."
+    "name": "banavasi"
   },
   "plugins": [
     {
-      "name": "i-have-adhd",
-      "description": "Action-first, ADHD-friendly output shaping for Claude Code.",
+      "name": "ferret",
+      "description": "Ferret, your dedicated dev-day companion: coding, review, docs, devops, journaling.",
       "source": "./",
       "category": "productivity"
     }

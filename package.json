@@ -1,16 +1,16 @@
 {
-  "name": "i-have-adhd",
-  "version": "0.4.1",
-  "description": "Shape output for a reader with ADHD: lead with the next action, number multi-step work, restate state across turns, suppress tangents, give specific time estimates, make wins visible.",
+  "name": "ferret",
+  "version": "1.0.0",
+  "description": "Ferret, your dedicated dev-day companion: auto-routes coding, debugging, review, docs, devops, and journaling. Action first, numbered steps, visible progress.",
   "license": "MIT",
-  "homepage": "https://github.com/ayghri/i-have-adhd",
+  "homepage": "https://github.com/banavasi/ferret",
   "private": true,
   "keywords": ["pi-package"],
   "omp": {
-    "extensions": ["./extensions/i-have-adhd.ts"]
+    "extensions": ["./extensions/ferret.ts"]
   },
   "pi": {
-    "extensions": ["./extensions/i-have-adhd.ts"],
+    "extensions": ["./extensions/ferret.ts"],
     "skills": ["./skills"]
   }
 }

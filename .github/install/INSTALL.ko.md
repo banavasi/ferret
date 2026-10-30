@@ -6,7 +6,7 @@
 ### 설치
 
 ```bash
-agy plugin install https://github.com/ayghri/i-have-adhd
+agy plugin install https://github.com/banavasi/ferret
 ```
 
 ### 확인
@@ -18,17 +18,17 @@ agy plugin list
 ### 업데이트
 
 ```bash
-agy plugin uninstall i-have-adhd
-agy plugin install https://github.com/ayghri/i-have-adhd
+agy plugin uninstall ferret
+agy plugin install https://github.com/banavasi/ferret
 ```
 
 ### 제거
 
 ```bash
-agy plugin uninstall i-have-adhd
+agy plugin uninstall ferret
 ```
 
-설치된 상태로 비활성화하려면 `agy plugin disable i-have-adhd`를 실행하세요.
+설치된 상태로 비활성화하려면 `agy plugin disable ferret`를 실행하세요.
 
 ### 항상 활성화(선택 사항)
 
@@ -61,11 +61,11 @@ agy plugin uninstall i-have-adhd
 ### 설치
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
+claude plugin marketplace add banavasi/ferret
+claude plugin install ferret@ferret
 ```
 
-`/i-have-adhd`를 입력하세요.
+`/ferret`를 입력하세요.
 
 ### 확인
 
@@ -76,40 +76,40 @@ claude plugin list
 ### 업데이트
 
 ```bash
-claude plugin marketplace update i-have-adhd
-claude plugin update i-have-adhd@i-have-adhd
+claude plugin marketplace update ferret
+claude plugin update ferret@ferret
 ```
 
 ### 제거
 
 ```bash
-claude plugin uninstall i-have-adhd
-claude plugin marketplace remove i-have-adhd
+claude plugin uninstall ferret
+claude plugin marketplace remove ferret
 ```
 
-설치된 상태로 비활성화하려면 `claude plugin disable i-have-adhd`를 실행하세요.
+설치된 상태로 비활성화하려면 `claude plugin disable ferret`를 실행하세요.
 
 ### 항상 활성화(선택 사항)
 
-`SessionStart` 훅이 매 세션 시작 시 전체 규칙을 불러오므로 `/i-have-adhd`를 입력할 필요가 없습니다:
+`SessionStart` 훅이 매 세션 시작 시 전체 규칙을 불러오므로 `/ferret`를 입력할 필요가 없습니다:
 
 ```bash
-touch ~/.claude/.i-have-adhd-always
+touch ~/.claude/.ferret-always
 ```
 
 사용자 지정 Claude 설정 디렉터리를 사용한다면, 대신 그곳에 플래그 파일을 만드세요:
 
 ```bash
-touch "$CLAUDE_CONFIG_DIR/.i-have-adhd-always"
+touch "$CLAUDE_CONFIG_DIR/.ferret-always"
 ```
 
 필요할 때만 켜는 방식으로 돌아가려면:
 
 ```bash
-rm ~/.claude/.i-have-adhd-always
+rm ~/.claude/.ferret-always
 ```
 
-훅은 플래그 파일이 있을 때만 실행되므로 플러그인 설치만으로는 아무것도 바뀌지 않습니다. "stop adhd mode"는 현재 세션에서 계속 비활성화합니다.
+훅은 플래그 파일이 있을 때만 실행되므로 플러그인 설치만으로는 아무것도 바뀌지 않습니다. "normal mode"는 현재 세션에서 계속 비활성화합니다.
 
 </details>
 
@@ -120,11 +120,11 @@ rm ~/.claude/.i-have-adhd-always
 ### 설치
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
-codex plugin add i-have-adhd@i-have-adhd
+codex plugin marketplace add banavasi/ferret --ref main
+codex plugin add ferret@ferret
 ```
 
-`$i-have-adhd`를 명시적으로 입력해 활성화하세요. Codex는 이 스킬을 자동으로 호출하지 않습니다.
+`$ferret`를 명시적으로 입력해 활성화하세요. Codex는 이 스킬을 자동으로 호출하지 않습니다.
 
 ### 확인
 
@@ -135,16 +135,16 @@ codex plugin list
 ### 업데이트
 
 ```bash
-codex plugin marketplace upgrade i-have-adhd
-codex plugin remove i-have-adhd
-codex plugin add i-have-adhd@i-have-adhd
+codex plugin marketplace upgrade ferret
+codex plugin remove ferret
+codex plugin add ferret@ferret
 ```
 
 ### 제거
 
 ```bash
-codex plugin remove i-have-adhd
-codex plugin marketplace remove i-have-adhd
+codex plugin remove ferret
+codex plugin marketplace remove ferret
 ```
 
 ### 항상 활성화(선택 사항)
@@ -181,16 +181,16 @@ Gemini CLI에는 플러그인 마켓플레이스가 없어 두 가지 기본 방
 
 ```bash
 mkdir -p ~/.gemini/commands
-curl -fsSL https://raw.githubusercontent.com/ayghri/i-have-adhd/main/skills/i-have-adhd/agents/gemini.toml \
-  -o ~/.gemini/commands/i-have-adhd.toml
+curl -fsSL https://raw.githubusercontent.com/banavasi/ferret/main/skills/ferret/agents/gemini.toml \
+  -o ~/.gemini/commands/ferret.toml
 ```
 
-새 세션을 시작하고 `/i-have-adhd`를 입력하세요. 해당 세션 동안 활성화됩니다.
+새 세션을 시작하고 `/ferret`를 입력하세요. 해당 세션 동안 활성화됩니다.
 
 ### 설치 (extension, always-on)
 
 ```bash
-gemini extensions install https://github.com/ayghri/i-have-adhd
+gemini extensions install https://github.com/banavasi/ferret
 ```
 
 확장 프로그램은 전체 스킬을 가져오는 `GEMINI.md`를 불러오므로 첫 메시지부터 규칙이 적용됩니다. `git`이 설치되어 있어야 합니다.
@@ -199,23 +199,23 @@ gemini extensions install https://github.com/ayghri/i-have-adhd
 
 ```bash
 gemini extensions list          # 확장 프로그램 방식
-ls ~/.gemini/commands           # command route: i-have-adhd.toml present
+ls ~/.gemini/commands           # command route: ferret.toml present
 ```
 
-또는 세션에서 `/`를 입력하고 `i-have-adhd`가 목록에 있는지 확인하세요.
+또는 세션에서 `/`를 입력하고 `ferret`가 목록에 있는지 확인하세요.
 
 ### 업데이트
 
 ```bash
-gemini extensions update i-have-adhd    # 확장 프로그램 방식
+gemini extensions update ferret    # 확장 프로그램 방식
 # 명령 방식: 위 curl 다시 실행
 ```
 
 ### 제거
 
 ```bash
-gemini extensions uninstall i-have-adhd    # 확장 프로그램 방식
-rm ~/.gemini/commands/i-have-adhd.toml     # command route
+gemini extensions uninstall ferret    # 확장 프로그램 방식
+rm ~/.gemini/commands/ferret.toml     # command route
 ```
 
 </details>
@@ -228,21 +228,21 @@ Copilot은 Agent Skills를 기본 지원하므로 같은 `SKILL.md`를 변환 �
 ### 설치
 
 ```bash
-npx skills add ayghri/i-have-adhd -a github-copilot        # 이 프로젝트
-npx skills add ayghri/i-have-adhd -a github-copilot -g     # 모든 프로젝트
+npx skills add banavasi/ferret -a github-copilot        # 이 프로젝트
+npx skills add banavasi/ferret -a github-copilot -g     # 모든 프로젝트
 ```
 
 CLI 없이 설치하려면 스킬 폴더를 Copilot이 검색하는 디렉터리 중 하나에 복사하세요:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.copilot/skills
-cp -R i-have-adhd/skills/i-have-adhd ~/.copilot/skills/
+cp -R ferret/skills/ferret ~/.copilot/skills/
 ```
 
 ### 확인
 
-채팅 입력란에 `/`를 입력하고 `i-have-adhd`가 나타나는지 확인하세요. 또는:
+채팅 입력란에 `/`를 입력하고 `ferret`가 나타나는지 확인하세요. 또는:
 
 ```bash
 npx skills list
@@ -252,7 +252,7 @@ npx skills ls -g    # 전역 설치한 경우
 ### 업데이트
 
 ```bash
-npx skills update i-have-adhd
+npx skills update ferret
 ```
 
 또는 `git pull` 후 폴더를 다시 복사하세요.
@@ -260,14 +260,14 @@ npx skills update i-have-adhd
 ### 제거
 
 ```bash
-npx skills remove i-have-adhd
+npx skills remove ferret
 ```
 
-또는 설치된 skills 디렉터리에서 `i-have-adhd` 폴더를 삭제하세요.
+또는 설치된 skills 디렉터리에서 `ferret` 폴더를 삭제하세요.
 
 ### 활성화 참고 사항
 
-Copilot은 `disable-model-invocation`을 따릅니다. Claude Code와 마찬가지로 스킬을 호출하기 전에는 아무 규칙도 적용되지 않습니다([#60](https://github.com/ayghri/i-have-adhd/pull/60)에서 테스트).
+Copilot은 `disable-model-invocation`을 따릅니다. Claude Code와 마찬가지로 스킬을 호출하기 전에는 아무 규칙도 적용되지 않습니다([#60](https://github.com/banavasi/ferret/pull/60)에서 테스트).
 
 ### 항상 활성화(선택 사항)
 
@@ -300,17 +300,17 @@ Copilot은 `disable-model-invocation`을 따릅니다. Claude Code와 마찬가�
 ### 설치
 
 ```bash
-hermes skills install ayghri/i-have-adhd/skills/i-have-adhd
+hermes skills install banavasi/ferret/skills/ferret
 ```
 
-`/i-have-adhd`를 입력하세요. The skill installs into `~/.hermes/skills/` and is exposed as a slash command at the next session start.
+`/ferret`를 입력하세요. The skill installs into `~/.hermes/skills/` and is exposed as a slash command at the next session start.
 
 먼저 둘러보려면 이 저장소를 스킬 소스("tap")로 추가한 뒤 검색하고 설치하세요:
 
 ```bash
-hermes skills tap add ayghri/i-have-adhd
-hermes skills search adhd
-hermes skills install ayghri/i-have-adhd/skills/i-have-adhd
+hermes skills tap add banavasi/ferret
+hermes skills search ferret
+hermes skills install banavasi/ferret/skills/ferret
 ```
 
 ### 확인
@@ -322,16 +322,16 @@ hermes skills list
 ### 업데이트
 
 ```bash
-hermes skills update i-have-adhd
+hermes skills update ferret
 ```
 
 ### 제거
 
 ```bash
-hermes skills uninstall i-have-adhd
+hermes skills uninstall ferret
 ```
 
-tap도 제거하려면 `hermes skills tap remove ayghri/i-have-adhd`를 실행하세요.
+tap도 제거하려면 `hermes skills tap remove banavasi/ferret`를 실행하세요.
 
 ### 항상 활성화(선택 사항)
 
@@ -367,18 +367,18 @@ Kimi Code 세션을 시작한 뒤 다음을 수행하세요.
 
 1. `/plugins`를 실행합니다.
 2. **Custom**을 선택합니다.
-3. `https://github.com/ayghri/i-have-adhd`를 붙여넣고 Enter를 누릅니다.
+3. `https://github.com/banavasi/ferret`를 붙여넣고 Enter를 누릅니다.
 4. **Trust and install**을 선택합니다.
 
-slash 명령 `/skill:i-have-adhd`로 이 스킬을 명시적으로 호출하세요.
+slash 명령 `/skill:ferret`로 이 스킬을 명시적으로 호출하세요.
 
 ### 업데이트
 
-Kimi Code 세션에서 `/plugins`를 실행하고 **I Have ADHD**에 커서를 맞춘 뒤 `R`을 누르세요.
+Kimi Code 세션에서 `/plugins`를 실행하고 **Ferret**에 커서를 맞춘 뒤 `R`을 누르세요.
 
 ### 제거
 
-Kimi Code 세션에서 `/plugins`를 실행하고 **I Have ADHD**에 커서를 맞춘 뒤 `D`를 누르세요.
+Kimi Code 세션에서 `/plugins`를 실행하고 **Ferret**에 커서를 맞춘 뒤 `D`를 누르세요.
 
 </details>
 
@@ -386,62 +386,62 @@ Kimi Code 세션에서 `/plugins`를 실행하고 **I Have ADHD**에 커서를 �
 <details>
 <summary><strong>OpenCode</strong></summary>
 
-플러그인은 OpenCode V1 **1.18.29 이상**과 V2를 지원합니다. 스킬과 `/i-have-adhd` 명령을 등록하고 선택 사항인 항상 활성화 모드를 제공합니다. 이전 V1 버전은 업그레이드하거나 이전 스킬 릴리스의 플러그인을 사용하세요.
+플러그인은 OpenCode V1 **1.18.29 이상**과 V2를 지원합니다. 스킬과 `/ferret` 명령을 등록하고 선택 사항인 항상 활성화 모드를 제공합니다. 이전 V1 버전은 업그레이드하거나 이전 스킬 릴리스의 플러그인을 사용하세요.
 
 ### 설치
 
 모든 프로젝트에서 사용하려면:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd ~/.config/opencode/vendor/i-have-adhd
+git clone https://github.com/banavasi/ferret ~/.config/opencode/vendor/ferret
 mkdir -p ~/.config/opencode/plugins
-cat > ~/.config/opencode/plugins/i-have-adhd.js <<'EOF'
-export { default } from '../vendor/i-have-adhd/.opencode/plugins/i-have-adhd.mjs';
+cat > ~/.config/opencode/plugins/ferret.js <<'EOF'
+export { default } from '../vendor/ferret/.opencode/plugins/ferret.mjs';
 EOF
 ```
 
 기존 V1 설치에서는 `opencode.json`의 `plugin` 항목을 유지하세요. 위 로더로 전환한다면 해당 항목을 제거하세요.
 
-새 세션에서 `/i-have-adhd`를 입력하세요. `stop adhd mode` 또는 `normal mode`를 입력할 때까지 규칙이 유지됩니다.
+새 세션에서 `/ferret`를 입력하세요. `normal mode` 또는 `normal mode`를 입력할 때까지 규칙이 유지됩니다.
 
 #### 스킬과 명령만 설치(항상 활성화 없음)
 
 대신 저장소에서 스킬과 명령을 OpenCode의 전역 디렉터리에 복사할 수 있습니다:
 
 ```bash
-mkdir -p ~/.config/opencode/skills/i-have-adhd ~/.config/opencode/commands
-cp skills/i-have-adhd/SKILL.md ~/.config/opencode/skills/i-have-adhd/SKILL.md
-cp .opencode/command/i-have-adhd.md ~/.config/opencode/commands/i-have-adhd.md
+mkdir -p ~/.config/opencode/skills/ferret ~/.config/opencode/commands
+cp skills/ferret/SKILL.md ~/.config/opencode/skills/ferret/SKILL.md
+cp .opencode/command/ferret.md ~/.config/opencode/commands/ferret.md
 ```
 
 ### 확인
 
-OpenCode를 시작하고 `/`를 입력해 명령 목록에 `i-have-adhd`가 있는지 확인하세요.
+OpenCode를 시작하고 `/`를 입력해 명령 목록에 `ferret`가 있는지 확인하세요.
 
 ### 업데이트
 
 ```bash
-git -C ~/.config/opencode/vendor/i-have-adhd pull
+git -C ~/.config/opencode/vendor/ferret pull
 ```
 
 복사 방식으로 설치했다면 저장소를 업데이트한 후 두 파일을 다시 복사하세요.
 
 ### 제거
 
-`~/.config/opencode/plugins/i-have-adhd.js`를 삭제하세요. 복사 방식으로 설치했다면 `~/.config/opencode/skills/i-have-adhd/`와 `~/.config/opencode/commands/i-have-adhd.md`를 삭제하세요. 기존 V1 설정 방식에서는 해당 `plugin` 항목을 제거하세요.
+`~/.config/opencode/plugins/ferret.js`를 삭제하세요. 복사 방식으로 설치했다면 `~/.config/opencode/skills/ferret/`와 `~/.config/opencode/commands/ferret.md`를 삭제하세요. 기존 V1 설정 방식에서는 해당 `plugin` 항목을 제거하세요.
 
 ### 항상 활성화(선택 사항)
 
 플러그인이 필요합니다. 플래그를 만들면 매 턴마다 전체 규칙이 시스템 프롬프트에 추가됩니다:
 
 ```bash
-touch ~/.config/opencode/.i-have-adhd-always
+touch ~/.config/opencode/.ferret-always
 ```
 
-`stop adhd mode` 또는 `normal mode`는 현재 세션에서 기본 응답 스타일로 돌아가도록 에이전트에 요청합니다. 자동 주입을 멈추려면 플래그를 삭제하세요:
+`normal mode` 또는 `normal mode`는 현재 세션에서 기본 응답 스타일로 돌아가도록 에이전트에 요청합니다. 자동 주입을 멈추려면 플래그를 삭제하세요:
 
 ```bash
-rm ~/.config/opencode/.i-have-adhd-always
+rm ~/.config/opencode/.ferret-always
 ```
 
 `XDG_CONFIG_HOME`이 설정되어 있다면 이 경로들의 `~/.config`를 해당 디렉터리로 바꾸세요.
@@ -456,15 +456,15 @@ Pi는 Agent Skills 표준을 구현하므로 같은 `SKILL.md`를 변환 없이 
 ### 설치
 
 ```bash
-npx skills add ayghri/i-have-adhd -a pi -y
+npx skills add banavasi/ferret -a pi -y
 ```
 
 파일 시스템 방식을 선호한다면 Pi는 `~/.pi/agent/skills/`와 `~/.agents/skills/`(전역), `.pi/skills/`와 `.agents/skills/`(프로젝트)에서 스킬을 찾습니다:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.pi/agent/skills
-cp -R i-have-adhd/skills/i-have-adhd ~/.pi/agent/skills/
+cp -R ferret/skills/ferret ~/.pi/agent/skills/
 ```
 
 Pi의 `settings.json`에서 스킬 슬래시 명령을 활성화하세요:
@@ -473,7 +473,7 @@ Pi의 `settings.json`에서 스킬 슬래시 명령을 활성화하세요:
 { "enableSkillCommands": true }
 ```
 
-새 세션을 시작하고 `/skill:i-have-adhd`를 입력하세요.
+새 세션을 시작하고 `/skill:ferret`를 입력하세요.
 
 ### 확인
 
@@ -481,12 +481,12 @@ Pi의 `settings.json`에서 스킬 슬래시 명령을 활성화하세요:
 npx skills list
 ```
 
-또는 세션에서 `/skill:`을 입력하고 `i-have-adhd`가 목록에 있는지 확인하세요.
+또는 세션에서 `/skill:`을 입력하고 `ferret`가 목록에 있는지 확인하세요.
 
 ### 업데이트
 
 ```bash
-npx skills update i-have-adhd
+npx skills update ferret
 ```
 
 또는 `git pull` 후 폴더를 다시 복사하세요.
@@ -494,10 +494,10 @@ npx skills update i-have-adhd
 ### 제거
 
 ```bash
-npx skills remove i-have-adhd
+npx skills remove ferret
 ```
 
-또는 `~/.pi/agent/skills/i-have-adhd`를 삭제하세요.
+또는 `~/.pi/agent/skills/ferret`를 삭제하세요.
 
 ### 항상 활성화(선택 사항)
 
@@ -531,12 +531,12 @@ npx skills remove i-have-adhd
 ### 설치
 
 ```bash
-qwen extensions install ayghri/i-have-adhd
+qwen extensions install banavasi/ferret
 ```
 
 Qwen Code는 GitHub 축약 표기를 지원하며 이 저장소를 네이티브 확장으로 설치합니다. 확장은 `skills/` 아래의 스킬을 검색합니다.
 
-`/i-have-adhd`를 입력해 이 스킬을 명시적으로 호출하세요. 확장만 설치해도 스킬을 호출하기 전까지 출력은 바뀌지 않습니다.
+`/ferret`를 입력해 이 스킬을 명시적으로 호출하세요. 확장만 설치해도 스킬을 호출하기 전까지 출력은 바뀌지 않습니다.
 
 ### 확인
 
@@ -550,18 +550,18 @@ qwen extensions list
 /skills
 ```
 
-목록에 `i-have-adhd`가 표시되는지 확인하세요.
+목록에 `ferret`가 표시되는지 확인하세요.
 
 ### 업데이트
 
 ```bash
-qwen extensions update i-have-adhd
+qwen extensions update ferret
 ```
 
 ### 제거
 
 ```bash
-qwen extensions uninstall i-have-adhd
+qwen extensions uninstall ferret
 ```
 
 </details>
@@ -576,22 +576,22 @@ Zed의 Agent는 Agent Skills를 기본 지원하므로 같은 `SKILL.md`를 변�
 Agent Panel에서 Skills 관리자를 열고 **Create skill from URL**(명령 팔레트에서는 `agent: create skill from url`)을 선택한 뒤 다음을 붙여넣으세요:
 
 ```
-https://github.com/ayghri/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md
+https://github.com/banavasi/ferret/blob/main/skills/ferret/SKILL.md
 ```
 
-모든 프로젝트에서 사용하려면 **User** 범위에, 한 프로젝트에서만 사용하려면 **Project** 범위에 저장하세요. 그런 다음 Agent Panel에서 `/i-have-adhd`를 입력하세요.
+모든 프로젝트에서 사용하려면 **User** 범위에, 한 프로젝트에서만 사용하려면 **Project** 범위에 저장하세요. 그런 다음 Agent Panel에서 `/ferret`를 입력하세요.
 
 파일 시스템 방식을 선호한다면 저장소를 클론하고 스킬 폴더를 사용자 skills 디렉터리에 넣으세요:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.agents/skills
-cp -R i-have-adhd/skills/i-have-adhd ~/.agents/skills/
+cp -R ferret/skills/ferret ~/.agents/skills/
 ```
 
 ### 확인
 
-Agent Panel에서 Skills 관리자를 열어 `i-have-adhd`가 목록에 있는지 확인하세요. 또는 `/`를 입력해 나타나는지 확인하세요.
+Agent Panel에서 Skills 관리자를 열어 `ferret`가 목록에 있는지 확인하세요. 또는 `/`를 입력해 나타나는지 확인하세요.
 
 ### 업데이트
 
@@ -599,7 +599,7 @@ Agent Panel에서 Skills 관리자를 열어 `i-have-adhd`가 목록에 있는�
 
 ### 제거
 
-Skills 관리자에서 `i-have-adhd`를 제거하거나 `~/.agents/skills/i-have-adhd`를 삭제하세요.
+Skills 관리자에서 `ferret`를 제거하거나 `~/.agents/skills/ferret`를 삭제하세요.
 
 ### 항상 활성화(선택 사항)
 
@@ -634,20 +634,20 @@ Agent Skills를 읽는 모든 실행 환경에서 작동합니다. `-a <agent>`�
 ### 설치
 
 ```bash
-npx skills add ayghri/i-have-adhd                  # this workspace
-npx skills add ayghri/i-have-adhd -g               # 모든 프로젝트
-npx skills add ayghri/i-have-adhd -a cursor -y     # one agent only
-npx skills add ayghri/i-have-adhd -a opencode -y
+npx skills add banavasi/ferret                  # this workspace
+npx skills add banavasi/ferret -g               # 모든 프로젝트
+npx skills add banavasi/ferret -a cursor -y     # one agent only
+npx skills add banavasi/ferret -a opencode -y
 ```
 
-새 에이전트 채팅에서 `/i-have-adhd`를 입력하세요.
+새 에이전트 채팅에서 `/ferret`를 입력하세요.
 
 CLI 없이 설치하려면 에이전트가 검색하는 경로에 스킬 폴더를 복사하세요:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.cursor/skills     # Cursor. OpenCode는 .agents/skills, 다른 에이전트는 자체 경로 사용
-cp -R i-have-adhd/skills/i-have-adhd ~/.cursor/skills/
+cp -R ferret/skills/ferret ~/.cursor/skills/
 ```
 
 ### 확인
@@ -660,15 +660,15 @@ npx skills ls -g    # 전역 설치한 경우
 ### 업데이트
 
 ```bash
-npx skills update i-have-adhd
+npx skills update ferret
 npx skills update -g    # 전역 설치한 경우
 ```
 
 ### 제거
 
 ```bash
-npx skills remove i-have-adhd
-npx skills remove i-have-adhd -g    # 전역 설치한 경우
+npx skills remove ferret
+npx skills remove ferret -g    # 전역 설치한 경우
 ```
 
 ### 항상 활성화(선택 사항)
@@ -699,31 +699,31 @@ npx skills remove i-have-adhd -g    # 전역 설치한 경우
 ## 활성화 방식
 
 1. **설치했지만 호출하지 않은 상태.** Claude Code, Qwen Code, Codex에서는 명시적으로 호출하기 전까지 아무 일도 일어나지 않습니다. Claude Code와 Qwen Code는 `SKILL.md`의 `disable-model-invocation: true`를 따르고, Codex는 `agents/openai.yaml`의 `policy.allow_implicit_invocation: false`를 따릅니다. 다른 실행 환경은 시작 시 각 스킬 설명을 불러와 스스로 활성화할 수 있습니다.
-2. **명시적으로 호출합니다.** Claude Code와 Qwen Code에서는 `/i-have-adhd`를, Codex에서는 `$i-have-adhd`를 입력합니다. 해당 세션에서 규칙이 활성화됩니다. "stop adhd mode" 또는 "normal mode"로 끌 수 있습니다.
-3. **`~/.claude/.i-have-adhd-always`를 만듭니다**(Claude Code). `SessionStart` 훅이 매 세션의 첫 메시지부터 전체 규칙을 불러옵니다.
+2. **명시적으로 호출합니다.** Claude Code와 Qwen Code에서는 `/ferret`를, Codex에서는 `$ferret`를 입력합니다. 해당 세션에서 규칙이 활성화됩니다. "normal mode" 또는 "normal mode"로 끌 수 있습니다.
+3. **`~/.claude/.ferret-always`를 만듭니다**(Claude Code). `SessionStart` 훅이 매 세션의 첫 메시지부터 전체 규칙을 불러옵니다.
 4. **위의 항상 활성화 코드 조각을 추가합니다**(기타 실행 환경). 핵심 규칙이 에이전트의 영구 컨텍스트에 유지됩니다.
 
 Claude Code, Qwen Code, Codex에는 중간 상태가 없습니다. 켜지 않았다면 꺼져 있습니다.
 
 ## 문제 해결
 
-**자동 완성에 `/i-have-adhd`가 없습니다.** 에이전트를 다시 시작하세요. 플러그인 인덱스는 시작 시 읽힙니다.
+**자동 완성에 `/ferret`가 없습니다.** 에이전트를 다시 시작하세요. 플러그인 인덱스는 시작 시 읽힙니다.
 
-**항상 활성화 플래그가 작동하지 않습니다.** 플러그인을 업데이트하고(`claude plugin marketplace update i-have-adhd` 실행 후 `claude plugin update i-have-adhd@i-have-adhd`) 다시 시작하세요. 훅은 시작 시 읽히며 플래그에는 `hooks/hooks.json`이 포함된 플러그인 버전이 필요합니다.
+**항상 활성화 플래그가 작동하지 않습니다.** 플러그인을 업데이트하고(`claude plugin marketplace update ferret` 실행 후 `claude plugin update ferret@ferret`) 다시 시작하세요. 훅은 시작 시 읽히며 플래그에는 `hooks/hooks.json`이 포함된 플러그인 버전이 필요합니다.
 
 **`claude plugin marketplace add`가 실패합니다.** `owner/repo` 형식을 사용하세요. 로컬 경로는 `.claude-plugin/`이 아니라 저장소 루트를 가리켜야 합니다.
 
-**설치했지만 답변에 여전히 서론이 있습니다.** 새 세션을 여세요. 계속 어긋난다면 `skills/i-have-adhd/SKILL.md`의 표현을 더 엄격하게 바꾸세요.
+**설치했지만 답변에 여전히 서론이 있습니다.** 새 세션을 여세요. 계속 어긋난다면 `skills/ferret/SKILL.md`의 표현을 더 엄격하게 바꾸세요.
 
-**다른 규칙을 원합니다.** 저장소를 포크하고 `skills/i-have-adhd/SKILL.md`를 수정한 뒤 자신의 복사본으로 교체하세요:
+**다른 규칙을 원합니다.** 저장소를 포크하고 `skills/ferret/SKILL.md`를 수정한 뒤 자신의 복사본으로 교체하세요:
 
 ```bash
-claude plugin uninstall i-have-adhd            # 먼저 업스트림 복사본 제거:
-claude plugin marketplace remove i-have-adhd   # 포크와 업스트림은 같은 이름 사용
-claude plugin marketplace add <your-username>/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
+claude plugin uninstall ferret            # 먼저 업스트림 복사본 제거:
+claude plugin marketplace remove ferret   # 포크와 업스트림은 같은 이름 사용
+claude plugin marketplace add <your-username>/ferret
+claude plugin install ferret@ferret
 ```
 
-다시 시작한 뒤 `/i-have-adhd`를 다시 호출하세요.
+다시 시작한 뒤 `/ferret`를 다시 호출하세요.
 
 **`npx skills add` 후 스킬이 보이지 않습니다.** 새 에이전트 채팅을 시작하세요. 스킬은 세션 시작 시 인덱싱됩니다. 폴더가 에이전트 검색 경로(Cursor는 `~/.cursor/skills/`, OpenCode는 `.agents/skills/`)에 있고 frontmatter의 `name`이 폴더 이름과 같은지 확인하세요.

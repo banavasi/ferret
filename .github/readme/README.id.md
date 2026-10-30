@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="../../logo.png" alt="i-have-adhd" width="140" />
+  <img src="../../logo.png" alt="ferret" width="140" />
 </p>
 <p align="center">
   <strong align="center">Respons yang ramah bagi kamu yang memiliki ADHD. Tanpa perlu diagnosis!</strong>
 </p>
 <p align="center">
-  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="Lisensi"></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/banavasi/ferret?style=flat" alt="Lisensi"></a>
 </p>
 
 <p align="center">
@@ -61,7 +61,7 @@ Sebuah skill untuk asisten coding-mu yang mencegahnya mengubur jawaban di tengah
 
 ## Aturannya
 
-10 aturan. Teks lengkap ada di [SKILL.md](../../skills/i-have-adhd/SKILL.md).
+10 aturan. Teks lengkap ada di [SKILL.md](../../skills/ferret/SKILL.md).
 
 1. Mulai dengan langkah selanjutnya.
 2. Beri nomor pada tugas yang memiliki beberapa langkah.
@@ -76,16 +76,16 @@ Sebuah skill untuk asisten coding-mu yang mencegahnya mengubur jawaban di tengah
 
 ## Sesuaikan (Kustomisasi)
 
-Lakukan fork, edit `skills/i-have-adhd/SKILL.md`, dan ganti dengan salinan Anda sendiri:
+Lakukan fork, edit `skills/ferret/SKILL.md`, dan ganti dengan salinan Anda sendiri:
 
 ```bash
-claude plugin uninstall i-have-adhd            # hapus salinan upstream terlebih dahulu:
-claude plugin marketplace remove i-have-adhd   # fork dan upstream menggunakan nama yang sama
-claude plugin marketplace add <username-anda>/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
+claude plugin uninstall ferret            # hapus salinan upstream terlebih dahulu:
+claude plugin marketplace remove ferret   # fork dan upstream menggunakan nama yang sama
+claude plugin marketplace add <username-anda>/ferret
+claude plugin install ferret@ferret
 ```
 
-Mulai ulang Claude Code dan panggil `/i-have-adhd` lagi.
+Mulai ulang Claude Code dan panggil `/ferret` lagi.
 
 ## Kredit
 

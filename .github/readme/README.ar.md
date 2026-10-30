@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="../../logo.png" alt="i-have-adhd" width="140" />
+  <img src="../../logo.png" alt="ferret" width="140" />
 </p>
 <p align="center">
   <strong align="center">إجابات موجزة ومناسبة للمصابين باضطراب فرط الحركة وتشتت الانتباه. لا حاجة إلى تشخيص؛ يمكن للجميع استخدامها!</strong>
 </p>
 <p align="center">
-  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="الترخيص"></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/banavasi/ferret?style=flat" alt="الترخيص"></a>
 </p>
 
 <p align="center">
@@ -26,7 +26,7 @@
 انسخ النص التالي والصقه في موجّه سطر الأوامر:
 
 ```text
-Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd, refer to the repo's AGENTS.md for instructions.
+Install the ferret skill/plugin from https://github.com/banavasi/ferret, refer to the repo's AGENTS.md for instructions.
 ```
 
 أو 🔗 [راجع تعليمات التثبيت](../install/INSTALL.ar.md).
@@ -65,7 +65,7 @@ Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd,
 
 ## القواعد العشر
 
-تتكوّن المهارة من عشر قواعد. تجد النص الكامل في [SKILL.md](../../skills/i-have-adhd/SKILL.md).
+تتكوّن المهارة من عشر قواعد. تجد النص الكامل في [SKILL.md](../../skills/ferret/SKILL.md).
 
 1. ابدأ بالإجراء التالي.
 2. رقّم المهام متعددة الخطوات.
@@ -80,16 +80,16 @@ Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd,
 
 ## التخصيص
 
-أنشئ نسخة متفرعة من المستودع، وعدّل `skills/i-have-adhd/SKILL.md`، ثم استخدم نسختك بدلاً من النسخة الأصلية:
+أنشئ نسخة متفرعة من المستودع، وعدّل `skills/ferret/SKILL.md`، ثم استخدم نسختك بدلاً من النسخة الأصلية:
 
 ```bash
-claude plugin uninstall i-have-adhd            # إزالة النسخة الأصلية أولاً
-claude plugin marketplace remove i-have-adhd   # النسخة المتفرعة والأصلية تحملان الاسم نفسه
-claude plugin marketplace add <your-username>/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
+claude plugin uninstall ferret            # إزالة النسخة الأصلية أولاً
+claude plugin marketplace remove ferret   # النسخة المتفرعة والأصلية تحملان الاسم نفسه
+claude plugin marketplace add <your-username>/ferret
+claude plugin install ferret@ferret
 ```
 
-أعد تشغيل Claude Code، ثم استدعِ `/i-have-adhd` مجددًا.
+أعد تشغيل Claude Code، ثم استدعِ `/ferret` مجددًا.
 
 ## شكر وتقدير
 

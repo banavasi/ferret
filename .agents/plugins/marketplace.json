@@ -1,14 +1,14 @@
 {
-  "name": "i-have-adhd",
+  "name": "ferret",
   "interface": {
-    "displayName": "I Have ADHD"
+    "displayName": "Ferret"
   },
   "plugins": [
     {
-      "name": "i-have-adhd",
+      "name": "ferret",
       "source": {
         "source": "url",
-        "url": "https://github.com/ayghri/i-have-adhd.git",
+        "url": "https://github.com/banavasi/ferret.git",
         "ref": "main"
       },
       "policy": {

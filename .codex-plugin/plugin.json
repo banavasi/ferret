@@ -1,39 +1,37 @@
 {
-  "name": "i-have-adhd",
-  "version": "0.4.1",
-  "description": "ADHD-friendly output shaping for Codex: action first, numbered steps, no tangents, and visible progress.",
+  "name": "ferret",
+  "version": "1.0.0",
+  "description": "Ferret, your dedicated dev-day companion for Codex: auto-routes coding, debugging, review, docs, devops, and journaling.",
   "author": {
-    "name": "Ayoub G.",
-    "url": "https://github.com/ayghri"
+    "name": "banavasi",
+    "url": "https://github.com/banavasi"
   },
-  "homepage": "https://github.com/ayghri/i-have-adhd",
-  "repository": "https://github.com/ayghri/i-have-adhd",
+  "homepage": "https://github.com/banavasi/ferret",
+  "repository": "https://github.com/banavasi/ferret",
   "license": "MIT",
   "keywords": [
-    "adhd",
-    "output-style",
+    "harness",
+    "orchestrator",
     "productivity",
     "skills",
     "codex"
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "I Have ADHD",
-    "shortDescription": "Action-first output for ADHD readers",
-    "longDescription": "Shape Codex responses for an ADHD reader by leading with the next action, numbering multi-step work, suppressing tangents, restating state, and making progress visible.",
-    "developerName": "Ayoub G.",
+    "displayName": "Ferret",
+    "shortDescription": "Your dedicated dev-day companion",
+    "longDescription": "Route every engineering task to its day-phase workflow: triage, framing, planning, test-first builds, disciplined debugging, critic reviews, QA, shipping, and journaled close-outs.",
+    "developerName": "banavasi",
     "category": "Productivity",
     "capabilities": [
       "Instructions"
     ],
-    "websiteURL": "https://github.com/ayghri/i-have-adhd",
+    "websiteURL": "https://github.com/banavasi/ferret",
     "defaultPrompt": [
-      "Use i-have-adhd for this task.",
+      "Use ferret for this task.",
       "Make this answer action-first and easy to execute.",
-      "Review this response for ADHD-friendly structure."
+      "Review this response for action-first structure."
     ],
-    "brandColor": "#2563EB",
-    "composerIcon": "./logo.png",
-    "logo": "./logo.png"
+    "brandColor": "#2563EB"
   }
 }

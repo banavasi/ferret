@@ -1,12 +1,12 @@
 # Agent guide
 
-This file is the map for agents working with [i-have-adhd](https://github.com/ayghri/i-have-adhd). Read it after locating or installing the repository. It explains where the canonical behavior, platform adapters, documentation, and verification commands live. It does not replace the skill rules in `skills/i-have-adhd/SKILL.md`.
+This file is the map for agents working with [ferret](https://github.com/banavasi/ferret). Read it after locating or installing the repository. It explains where the canonical behavior, platform adapters, documentation, and verification commands live. It does not replace the skill rules in `skills/ferret/SKILL.md`.
 
 ## Start here
 
 1. Read `README.md` for the purpose and user-facing behavior.
 2. Read `INSTALL.md` for installation paths and platform-specific setup.
-3. Read `skills/i-have-adhd/SKILL.md` for the canonical skill behavior.
+3. Read `skills/ferret/SKILL.md` for the canonical skill behavior.
 4. Read `CONTRIBUTING.md` and `.github/pull_request_template.md` before proposing changes.
 5. Inspect the entry point for the target runtime, then run the smallest relevant checks.
 
@@ -18,7 +18,7 @@ Agents may read and reference any GitHub issue or pull request. Commenting has n
 
 - Agents may comment on their own pull requests, following this file, `CONTRIBUTING.md`, and `.github/pull_request_template.md`.
 - Agents must not comment on pull requests they did not author.
-- Agents may comment on an issue only when it carries the `AI Agora` label. The current shared forum is [issue #127](https://github.com/ayghri/i-have-adhd/issues/127).
+- Agents may comment on an issue only when it carries the `AI Agora` label. The current shared forum is [issue #127](https://github.com/banavasi/ferret/issues/127).
 - The `AI Agora` label permits discussion; it does not by itself authorize repository changes, label changes, merges, or edits to the human-maintained summary.
 - Before commenting in the Agora, read its latest summary and comments. Keep one distinct proposal per comment, separate observations from inferences, cite evidence, state uncertainty, and avoid repeating prior comments.
 
@@ -26,8 +26,8 @@ Agents may read and reference any GitHub issue or pull request. Commenting has n
 
 | Area | Location | Purpose |
 | --- | --- | --- |
-| Canonical skill | `skills/i-have-adhd/SKILL.md` | The source of truth for the 10 ADHD-friendly response rules. |
-| Skill mirror | `.cursor/skills/i-have-adhd/SKILL.md` | Cursor-compatible copy; keep it synchronized with the canonical skill. |
+| Canonical skill | `skills/ferret/SKILL.md` | The source of truth for the harness router and output rules. |
+| Skill mirror | `.cursor/skills/ferret/SKILL.md` | Cursor-compatible copy; keep it synchronized with the canonical skill. |
 | Claude and Codex metadata | `.claude-plugin/`, `.codex-plugin/`, `.agents/plugins/` | Plugin manifests and marketplace metadata. |
 | Shared hooks | `hooks/hooks.json`, `hooks/always-on.*` | Hook declarations and cross-platform always-on behavior. |
 | Pi and OMP | `package.json`, `extensions/` | Native extensions and runtime compatibility helpers. |
@@ -45,15 +45,15 @@ When debugging or changing one integration, begin with its entry point:
 | --- | --- |
 | Claude Code | `.claude-plugin/plugin.json`, `hooks/hooks.json`, `hooks/always-on.mjs` |
 | Codex | `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `hooks/hooks.json` |
-| Grok | `plugin.json`, `skills/i-have-adhd/SKILL.md`, `INSTALL.md` |
-| Pi | `package.json` (`pi`), `extensions/i-have-adhd.ts` |
-| OMP | `package.json` (`omp`), `extensions/i-have-adhd.ts`, `extensions/context-compat.ts` |
-| OpenCode | `.opencode/plugins/i-have-adhd.mjs`, `.opencode/plugins/i-have-adhd.js`, `.opencode/command/i-have-adhd.md` |
+| Grok | `plugin.json`, `skills/ferret/SKILL.md`, `INSTALL.md` |
+| Pi | `package.json` (`pi`), `extensions/ferret.ts` |
+| OMP | `package.json` (`omp`), `extensions/ferret.ts`, `extensions/context-compat.ts` |
+| OpenCode | `.opencode/plugins/ferret.mjs`, `.opencode/plugins/ferret.js`, `.opencode/command/ferret.md` |
 | Qwen, Kimi, Gemini | The corresponding manifest above, plus `GEMINI.md` for Gemini behavior |
 
 ## Source-of-truth rules
 
-- Change `skills/i-have-adhd/SKILL.md` first when changing skill behavior, then synchronize the `.cursor` mirror.
+- Change `skills/ferret/SKILL.md` first when changing skill behavior, then synchronize the `.cursor` mirror.
 - Treat manifests and hook declarations as runtime contracts. Keep shared metadata, including versions, aligned across manifest files.
 - Keep installation and behavior claims in `README.md`, `INSTALL.md`, and their localized counterparts accurate.
 - Do not edit generated dependencies, local caches, or unrelated user files.

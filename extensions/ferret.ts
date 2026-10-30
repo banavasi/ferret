@@ -16,33 +16,33 @@ const SKILL_PATH = join(
   EXTENSION_DIR,
   "..",
   "skills",
-  "i-have-adhd",
+  "ferret",
   "SKILL.md",
 );
-const STATE_ENTRY_TYPE = "i-have-adhd-state";
-const RULES_MESSAGE_TYPE = "i-have-adhd-rules";
-const DISABLED_MESSAGE_TYPE = "i-have-adhd-disabled";
-const STATUS_KEY = "i-have-adhd";
-const DISABLE_CONFIRMATION = "ADHD mode disabled.";
-const STOP_PHRASES = new Set(["stop adhd mode", "normal mode"]);
+const STATE_ENTRY_TYPE = "ferret-state";
+const RULES_MESSAGE_TYPE = "ferret-rules";
+const DISABLED_MESSAGE_TYPE = "ferret-disabled";
+const STATUS_KEY = "ferret";
+const DISABLE_CONFIRMATION = "Ferret harness disabled.";
+const STOP_PHRASES = new Set(["normal mode"]);
 const RULES_HEADER =
-  'ADHD MODE ACTIVE. The ruleset below applies to every response until turned off. "stop adhd mode" or "normal mode" turns it off for this session.';
+  'FERRET HARNESS ACTIVE. The router below applies to every response until turned off. "normal mode" turns it off for this session.';
 const DISABLED_NOTICE =
-  "ADHD MODE OFF. Ignore the i-have-adhd ruleset injected earlier in this conversation and return to your default response style.";
+  "FERRET HARNESS OFF. Ignore the ferret router injected earlier in this conversation and return to your default response style.";
 
-type AdhdModeState = {
+type FerretModeState = {
   enabled: boolean;
 };
 
-type AdhdConfig = {
+type FerretConfig = {
   alwaysOn?: boolean;
   hideStatus?: boolean;
 };
 
-function loadConfig(): AdhdConfig {
+function loadConfig(): FerretConfig {
   try {
     return JSON.parse(
-      readFileSync(join(getAgentDir(), "i-have-adhd.json"), "utf8"),
+      readFileSync(join(getAgentDir(), "ferret.json"), "utf8"),
     );
   } catch {
     return {};
@@ -66,13 +66,13 @@ function loadRules(): string {
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     throw new Error(
-      `Unable to load i-have-adhd rules from ${SKILL_PATH}: ${reason}`,
+      `Unable to load ferret rules from ${SKILL_PATH}: ${reason}`,
     );
   }
 
   const rules = stripFrontmatter(content);
   if (!rules) {
-    throw new Error(`The i-have-adhd rules file is empty: ${SKILL_PATH}`);
+    throw new Error(`The ferret rules file is empty: ${SKILL_PATH}`);
   }
 
   return rules;
@@ -86,7 +86,7 @@ function getSavedState(ctx: ExtensionContext): boolean | undefined {
       continue;
     }
 
-    const data = entry.data as Partial<AdhdModeState> | undefined;
+    const data = entry.data as Partial<FerretModeState> | undefined;
     if (typeof data?.enabled === "boolean") {
       savedState = data.enabled;
     }
@@ -99,7 +99,7 @@ function getSavedState(ctx: ExtensionContext): boolean | undefined {
  * Whether the rules are still live in the context the model actually receives.
  *
  * Only the newest marker counts: a later "disabled" notice cancels an earlier
- * ruleset, and compaction drops summarized entries so the ruleset has to be
+ * router, and compaction drops summarized entries so the router has to be
  * injected again.
  */
 function rulesAreInContext(ctx: ExtensionContext): boolean {
@@ -110,9 +110,9 @@ function rulesAreInContext(ctx: ExtensionContext): boolean {
   );
 }
 
-export default function iHaveAdhdExtension(pi: ExtensionAPI) {
+export default function ferretExtension(pi: ExtensionAPI) {
   const rules = loadRules();
-  const alwaysOnFlag = join(getAgentDir(), ".i-have-adhd-always");
+  const alwaysOnFlag = join(getAgentDir(), ".ferret-always");
   const config = loadConfig();
   let enabled = false;
 
@@ -123,13 +123,13 @@ export default function iHaveAdhdExtension(pi: ExtensionAPI) {
     }
 
     const dot = ctx.ui.theme.fg("success", "●");
-    const label = ctx.ui.theme.fg("accent", "ADHD ON");
+    const label = ctx.ui.theme.fg("accent", "FERRET ON");
     ctx.ui.setStatus(STATUS_KEY, `${dot} ${label}`);
   };
 
   /**
    * Keep the conversation in sync with the current mode, the way the Claude Code
-   * SessionStart hook does: inject the ruleset once, never per request.
+   * SessionStart hook does: inject the router once, never per request.
    */
   const syncContext = (ctx: ExtensionContext): void => {
     const injected = rulesAreInContext(ctx);
@@ -161,7 +161,7 @@ export default function iHaveAdhdExtension(pi: ExtensionAPI) {
   const restoreState = (ctx: ExtensionContext): void => {
     const savedState = getSavedState(ctx);
     const enabledByDefault =
-      pi.getFlag("adhd") === true ||
+      pi.getFlag("ferret") === true ||
       config.alwaysOn === true ||
       existsSync(alwaysOnFlag);
 
@@ -172,20 +172,20 @@ export default function iHaveAdhdExtension(pi: ExtensionAPI) {
 
   const setEnabled = (nextEnabled: boolean, ctx: ExtensionContext): void => {
     enabled = nextEnabled;
-    pi.appendEntry(STATE_ENTRY_TYPE, { enabled } satisfies AdhdModeState);
+    pi.appendEntry(STATE_ENTRY_TYPE, { enabled } satisfies FerretModeState);
     updateStatus(ctx);
     syncContext(ctx);
-    ctx.ui.notify(`ADHD mode ${enabled ? "enabled" : "disabled"}`, "info");
+    ctx.ui.notify(`Ferret harness ${enabled ? "enabled" : "disabled"}`, "info");
   };
 
-  pi.registerFlag("adhd", {
-    description: "Start with ADHD-friendly output enabled",
+  pi.registerFlag("ferret", {
+    description: "Start with the ferret harness enabled",
     type: "boolean",
     default: false,
   });
 
-  pi.registerCommand("i-have-adhd", {
-    description: "Toggle ADHD-friendly output for this session",
+  pi.registerCommand("ferret", {
+    description: "Toggle the ferret harness for this session",
     handler: async (args, ctx) => {
       const argument = args.trim().toLowerCase();
 
@@ -204,7 +204,7 @@ export default function iHaveAdhdExtension(pi: ExtensionAPI) {
         return;
       }
 
-      ctx.ui.notify("Usage: /i-have-adhd [on|off]", "warning");
+      ctx.ui.notify("Usage: /ferret [on|off]", "warning");
     },
   });
 
@@ -213,7 +213,7 @@ export default function iHaveAdhdExtension(pi: ExtensionAPI) {
 
     // Keep the built-in skill command working as an alias without letting Pi
     // expand a second copy of the same rules into the conversation.
-    if (input === "/skill:i-have-adhd") {
+    if (input === "/skill:ferret") {
       setEnabled(true, ctx);
       return { action: "handled" };
     }

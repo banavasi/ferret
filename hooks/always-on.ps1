@@ -1,6 +1,6 @@
-# SessionStart hook fallback for Windows PowerShell. Injects the full
-# i-have-adhd ruleset when the user has opted in by creating
-# $CLAUDE_CONFIG_DIR/.i-have-adhd-always (default ~/.claude).
+# SessionStart hook fallback for Windows PowerShell. Injects the ferret
+# harness router when the user has opted in by creating
+# $CLAUDE_CONFIG_DIR/.ferret-always (default ~/.claude).
 # Never blocks session start: any failure exits 0.
 
 try {
@@ -9,14 +9,14 @@ try {
   } else {
     Join-Path ([Environment]::GetFolderPath("UserProfile")) ".claude"
   }
-  $flagPath = Join-Path $claudeDir ".i-have-adhd-always"
+  $flagPath = Join-Path $claudeDir ".ferret-always"
 
   if (-not (Test-Path -LiteralPath $flagPath -PathType Leaf)) {
     exit 0
   }
 
   $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-  $skillPath = Join-Path $scriptDir "../skills/i-have-adhd/SKILL.md"
+  $skillPath = Join-Path $scriptDir "../skills/ferret/SKILL.md"
   if (-not (Test-Path -LiteralPath $skillPath -PathType Leaf)) {
     exit 0
   }
@@ -41,8 +41,8 @@ try {
     ""
   }
 
-  $banner = 'ADHD MODE ACTIVE (always-on). The ruleset below applies to every response. ' +
-    '"stop adhd mode" turns it off for this session; delete '
+  $banner = 'FERRET HARNESS ACTIVE (always-on). The router below applies to every response. ' +
+    '"normal mode" turns it off for this session; delete '
   [Console]::Out.Write($banner + $flagPath + " to turn always-on off for good.`n`n" + $body + "`n")
 } catch {
   # Never block session start.

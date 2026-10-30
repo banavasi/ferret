@@ -96,9 +96,9 @@ class AlwaysOnHookTest(unittest.TestCase):
                 self.assertEqual("", result.stderr)
 
     def test_runtimes_strip_frontmatter_with_trailing_whitespace(self):
-        skill_path = self.plugin_root / "skills" / "i-have-adhd" / "SKILL.md"
+        skill_path = self.plugin_root / "skills" / "ferret" / "SKILL.md"
         skill_path.write_text("---   \nname: fixture\n--- \t\nFixture body.\n")
-        (self.config_dir / ".i-have-adhd-always").touch()
+        (self.config_dir / ".ferret-always").touch()
         outputs = {}
 
         for name, command in self.runtimes():
@@ -117,9 +117,9 @@ class AlwaysOnHookTest(unittest.TestCase):
         # An opening --- with no closing delimiter is not frontmatter. Keeping
         # the whole file beats injecting a banner that promises "the ruleset
         # below" followed by nothing.
-        skill_path = self.plugin_root / "skills" / "i-have-adhd" / "SKILL.md"
+        skill_path = self.plugin_root / "skills" / "ferret" / "SKILL.md"
         skill_path.write_text("---\nname: fixture\nFixture body, fence never closed.\n")
-        (self.config_dir / ".i-have-adhd-always").touch()
+        (self.config_dir / ".ferret-always").touch()
         outputs = {}
 
         for name, command in self.runtimes():
@@ -134,13 +134,13 @@ class AlwaysOnHookTest(unittest.TestCase):
         self.assertEqual(1, len(set(outputs.values())))
 
     def test_codex_command_runs_the_hook_instead_of_parsing_session_json(self):
-        (self.config_dir / ".i-have-adhd-always").touch()
+        (self.config_dir / ".ferret-always").touch()
 
         result = self.run_codex_hook()
 
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertEqual("", result.stderr)
-        self.assertIn("ADHD MODE ACTIVE (always-on)", result.stdout)
+        self.assertIn("FERRET HARNESS ACTIVE (always-on)", result.stdout)
 
     def test_codex_command_is_silent_without_opt_in_flag(self):
         result = self.run_codex_hook()
@@ -167,6 +167,141 @@ class AlwaysOnHookTest(unittest.TestCase):
         self.assertIn("process.env.PLUGIN_ROOT", command)
         self.assertIn("await import", command)
         self.assertIn(".catch", command)
+
+
+class RouteHintHookTest(unittest.TestCase):
+    def setUp(self):
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp_dir.cleanup)
+        self.plugin_root = Path(self.temp_dir.name) / "plugin with spaces"
+        shutil.copytree(ROOT / "hooks", self.plugin_root / "hooks")
+        self.config_dir = Path(self.temp_dir.name) / "claude config"
+        self.config_dir.mkdir()
+
+    def test_user_prompt_submit_uses_the_shared_launcher(self):
+        config = json.loads((ROOT / "hooks" / "hooks.json").read_text())
+        hook = config["hooks"]["UserPromptSubmit"][0]["hooks"][0]
+
+        self.assertNotIn("args", hook)
+        command = hook["command"]
+        self.assertRegex(command, r'^node(?: --input-type=module)? -e "')
+        self.assertIn("process.env.CLAUDE_PLUGIN_ROOT", command)
+        self.assertIn("process.env.PLUGIN_ROOT", command)
+        self.assertIn("route-hint.mjs", command)
+        self.assertIn(".catch", command)
+
+    def run_route_hint(self):
+        env = os.environ.copy()
+        env["CLAUDE_CONFIG_DIR"] = str(self.config_dir)
+        return subprocess.run(
+            ["node", str(self.plugin_root / "hooks" / "route-hint.mjs")],
+            check=False,
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+
+    @unittest.skipUnless(shutil.which("node"), "node is required")
+    def test_route_hint_is_silent_without_opt_in_flag(self):
+        result = self.run_route_hint()
+
+        self.assertEqual(0, result.returncode)
+        self.assertEqual("", result.stdout)
+        self.assertEqual("", result.stderr)
+
+    @unittest.skipUnless(shutil.which("node"), "node is required")
+    def test_route_hint_names_every_router_mode(self):
+        (self.config_dir / ".ferret-always").touch()
+        result = self.run_route_hint()
+
+        self.assertEqual(0, result.returncode)
+        self.assertEqual("", result.stderr)
+        self.assertIn("FERRET ROUTER HINT", result.stdout)
+        for mode in (
+            "morning", "frame", "plan", "build", "debug", "browse",
+            "review", "design", "quality", "ship", "save", "meta", "init",
+        ):
+            self.assertIn(mode, result.stdout)
+
+
+class PreCompactHookTest(unittest.TestCase):
+    def setUp(self):
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp_dir.cleanup)
+        self.plugin_root = Path(self.temp_dir.name) / "plugin with spaces"
+        shutil.copytree(ROOT / "hooks", self.plugin_root / "hooks")
+        self.config_dir = Path(self.temp_dir.name) / "claude config"
+        self.config_dir.mkdir()
+        self.work_dir = Path(self.temp_dir.name) / "work dir"
+        self.work_dir.mkdir()
+
+    def test_pre_compact_uses_the_shared_launcher(self):
+        config = json.loads((ROOT / "hooks" / "hooks.json").read_text())
+        hook = config["hooks"]["PreCompact"][0]["hooks"][0]
+
+        self.assertNotIn("args", hook)
+        command = hook["command"]
+        self.assertRegex(command, r'^node(?: --input-type=module)? -e "')
+        self.assertIn("process.env.CLAUDE_PLUGIN_ROOT", command)
+        self.assertIn("process.env.PLUGIN_ROOT", command)
+        self.assertIn("pre-compact.mjs", command)
+        self.assertIn(".catch", command)
+
+    def run_pre_compact(self):
+        env = os.environ.copy()
+        env["CLAUDE_CONFIG_DIR"] = str(self.config_dir)
+        return subprocess.run(
+            ["node", str(self.plugin_root / "hooks" / "pre-compact.mjs")],
+            check=False,
+            capture_output=True,
+            text=True,
+            env=env,
+            cwd=self.work_dir,
+        )
+
+    @unittest.skipUnless(shutil.which("node"), "node is required")
+    def test_pre_compact_is_silent_without_opt_in_flag(self):
+        result = self.run_pre_compact()
+
+        self.assertEqual(0, result.returncode)
+        self.assertEqual("", result.stdout)
+        self.assertEqual("", result.stderr)
+        self.assertFalse((self.work_dir / ".ferret").exists())
+
+    @unittest.skipUnless(shutil.which("node"), "node is required")
+    def test_pre_compact_snapshots_state_outside_a_repo(self):
+        (self.config_dir / ".ferret-always").touch()
+        result = self.run_pre_compact()
+
+        self.assertEqual(0, result.returncode)
+        self.assertEqual("", result.stderr)
+        self.assertIn("FERRET PRE-COMPACT", result.stdout)
+        snapshots = sorted((self.work_dir / ".ferret").glob("compact-*.md"))
+        self.assertEqual(1, len(snapshots))
+        body = snapshots[0].read_text()
+        self.assertIn("Not a git checkout", body)
+        self.assertIn(".ferret/handoff.md", body)
+
+    @unittest.skipUnless(
+        shutil.which("node") and shutil.which("git"), "node and git are required"
+    )
+    def test_pre_compact_captures_git_state_inside_a_repo(self):
+        subprocess.run(
+            ["git", "init", "-b", "main"],
+            check=True,
+            capture_output=True,
+            cwd=self.work_dir,
+        )
+        (self.work_dir / "note.txt").write_text("wip\n")
+        (self.config_dir / ".ferret-always").touch()
+        result = self.run_pre_compact()
+
+        self.assertEqual(0, result.returncode, result.stderr)
+        snapshots = sorted((self.work_dir / ".ferret").glob("compact-*.md"))
+        self.assertEqual(1, len(snapshots))
+        body = snapshots[0].read_text()
+        self.assertIn("Branch: main", body)
+        self.assertIn("note.txt", body)
 
 
 if __name__ == "__main__":

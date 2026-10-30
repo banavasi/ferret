@@ -8,14 +8,15 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillsDir = path.resolve(__dirname, '../../skills');
-const skillPath = path.join(skillsDir, 'i-have-adhd', 'SKILL.md');
-const commandPath = path.join(__dirname, '..', 'command', 'i-have-adhd.md');
+const skillPath = path.join(skillsDir, 'ferret', 'SKILL.md');
+const commandPath = path.join(__dirname, '..', 'command', 'ferret.md');
 
-const SKILL_ID = 'i-have-adhd';
+const SKILL_ID = 'ferret';
 const FALLBACK_DESCRIPTION =
-  'Shape output for a reader with ADHD: lead with the next action, number ' +
-  'multi-step work, restate state across turns, suppress tangents, give ' +
-  'specific time estimates, make wins visible.';
+  'Ferret, your dedicated dev-day companion and harness: auto-routes coding, ' +
+  'debugging, review, docs, devops, and journaling. Action first, numbered ' +
+  'steps, visible progress.';
+
 
 // Command frontmatter is JSON so both loaders can share metadata without a YAML parser.
 async function commandDefinition() {
@@ -28,7 +29,7 @@ async function commandDefinition() {
 const flagPath = path.join(
   process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config'),
   'opencode',
-  '.i-have-adhd-always',
+  '.ferret-always',
 );
 
 // Match the shared hooks' frontmatter stripping and newline handling.
@@ -43,8 +44,8 @@ function alwaysOnInjection() {
   try {
     if (!fs.existsSync(flagPath)) return null;
     const header =
-      'ADHD MODE ACTIVE (always-on). The ruleset below applies to every ' +
-      'response. "stop adhd mode" or "normal mode" turns it off for this ' +
+      'FERRET HARNESS ACTIVE (always-on). The router below applies to every ' +
+      'response. "normal mode" turns it off for this ' +
       'session; delete ' + flagPath + ' to turn always-on off for good.';
     return header + '\n\n' + rulesetBody();
   } catch {

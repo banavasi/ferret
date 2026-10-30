@@ -6,7 +6,7 @@
 ### Instalar
 
 ```bash
-agy plugin install https://github.com/ayghri/i-have-adhd
+agy plugin install https://github.com/banavasi/ferret
 ```
 
 ### Verificar
@@ -18,17 +18,17 @@ agy plugin list
 ### Atualizar
 
 ```bash
-agy plugin uninstall i-have-adhd
-agy plugin install https://github.com/ayghri/i-have-adhd
+agy plugin uninstall ferret
+agy plugin install https://github.com/banavasi/ferret
 ```
 
 ### Desinstalar
 
 ```bash
-agy plugin uninstall i-have-adhd
+agy plugin uninstall ferret
 ```
 
-Ou mantenha instalado e desative: `agy plugin disable i-have-adhd`.
+Ou mantenha instalado e desative: `agy plugin disable ferret`.
 
 ### Sempre ativo (opcional)
 
@@ -61,11 +61,11 @@ Exceções: explique por completo quando pedirem. Confirme antes de ações dest
 ### Instalar
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
+claude plugin marketplace add banavasi/ferret
+claude plugin install ferret@ferret
 ```
 
-Digite `/i-have-adhd`.
+Digite `/ferret`.
 
 ### Verificar
 
@@ -76,40 +76,40 @@ claude plugin list
 ### Atualizar
 
 ```bash
-claude plugin marketplace update i-have-adhd
-claude plugin update i-have-adhd@i-have-adhd
+claude plugin marketplace update ferret
+claude plugin update ferret@ferret
 ```
 
 ### Desinstalar
 
 ```bash
-claude plugin uninstall i-have-adhd
-claude plugin marketplace remove i-have-adhd
+claude plugin uninstall ferret
+claude plugin marketplace remove ferret
 ```
 
-Ou mantenha instalado e desative: `claude plugin disable i-have-adhd`.
+Ou mantenha instalado e desative: `claude plugin disable ferret`.
 
 ### Sempre ativo (opcional)
 
-Um hook `SessionStart` carrega todas as regras no início de cada sessão; não é preciso usar `/i-have-adhd`:
+Um hook `SessionStart` carrega todas as regras no início de cada sessão; não é preciso usar `/ferret`:
 
 ```bash
-touch ~/.claude/.i-have-adhd-always
+touch ~/.claude/.ferret-always
 ```
 
 Se você usa um diretório de configuração personalizado do Claude, crie o arquivo de sinalização nele:
 
 ```bash
-touch "$CLAUDE_CONFIG_DIR/.i-have-adhd-always"
+touch "$CLAUDE_CONFIG_DIR/.ferret-always"
 ```
 
 Para voltar ao modo sob demanda:
 
 ```bash
-rm ~/.claude/.i-have-adhd-always
+rm ~/.claude/.ferret-always
 ```
 
-O hook só é executado quando o arquivo de sinalização existe, portanto instalar o plugin não muda nada por si só. "stop adhd mode" ainda o desativa na sessão atual.
+O hook só é executado quando o arquivo de sinalização existe, portanto instalar o plugin não muda nada por si só. "normal mode" ainda o desativa na sessão atual.
 
 </details>
 
@@ -120,11 +120,11 @@ O hook só é executado quando o arquivo de sinalização existe, portanto insta
 ### Instalar
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
-codex plugin add i-have-adhd@i-have-adhd
+codex plugin marketplace add banavasi/ferret --ref main
+codex plugin add ferret@ferret
 ```
 
-Ative a skill explicitamente digitando `$i-have-adhd`. O Codex não a invoca automaticamente.
+Ative a skill explicitamente digitando `$ferret`. O Codex não a invoca automaticamente.
 
 ### Verificar
 
@@ -135,16 +135,16 @@ codex plugin list
 ### Atualizar
 
 ```bash
-codex plugin marketplace upgrade i-have-adhd
-codex plugin remove i-have-adhd
-codex plugin add i-have-adhd@i-have-adhd
+codex plugin marketplace upgrade ferret
+codex plugin remove ferret
+codex plugin add ferret@ferret
 ```
 
 ### Desinstalar
 
 ```bash
-codex plugin remove i-have-adhd
-codex plugin marketplace remove i-have-adhd
+codex plugin remove ferret
+codex plugin marketplace remove ferret
 ```
 
 ### Sempre ativo (opcional)
@@ -181,16 +181,16 @@ O Gemini CLI não tem marketplace de plugins, então há duas opções nativas: 
 
 ```bash
 mkdir -p ~/.gemini/commands
-curl -fsSL https://raw.githubusercontent.com/ayghri/i-have-adhd/main/skills/i-have-adhd/agents/gemini.toml \
-  -o ~/.gemini/commands/i-have-adhd.toml
+curl -fsSL https://raw.githubusercontent.com/banavasi/ferret/main/skills/ferret/agents/gemini.toml \
+  -o ~/.gemini/commands/ferret.toml
 ```
 
-Inicie uma nova sessão e digite `/i-have-adhd`. A skill permanecerá ativa durante essa sessão.
+Inicie uma nova sessão e digite `/ferret`. A skill permanecerá ativa durante essa sessão.
 
 ### Instalar (extension, always-on)
 
 ```bash
-gemini extensions install https://github.com/ayghri/i-have-adhd
+gemini extensions install https://github.com/banavasi/ferret
 ```
 
 A extensão carrega `GEMINI.md`, que importa a skill completa; assim, as regras valem desde a primeira mensagem. O `git` precisa estar instalado.
@@ -199,23 +199,23 @@ A extensão carrega `GEMINI.md`, que importa a skill completa; assim, as regras 
 
 ```bash
 gemini extensions list          # via extensão
-ls ~/.gemini/commands           # command route: i-have-adhd.toml present
+ls ~/.gemini/commands           # command route: ferret.toml present
 ```
 
-Ou digite `/` em uma sessão e confirme que `i-have-adhd` aparece na lista.
+Ou digite `/` em uma sessão e confirme que `ferret` aparece na lista.
 
 ### Atualizar
 
 ```bash
-gemini extensions update i-have-adhd    # via extensão
+gemini extensions update ferret    # via extensão
 # via comando: execute novamente o curl acima
 ```
 
 ### Desinstalar
 
 ```bash
-gemini extensions uninstall i-have-adhd    # via extensão
-rm ~/.gemini/commands/i-have-adhd.toml     # command route
+gemini extensions uninstall ferret    # via extensão
+rm ~/.gemini/commands/ferret.toml     # command route
 ```
 
 </details>
@@ -228,21 +228,21 @@ O Copilot lê Agent Skills nativamente: usa o mesmo `SKILL.md`, sem conversão. 
 ### Instalar
 
 ```bash
-npx skills add ayghri/i-have-adhd -a github-copilot        # este projeto
-npx skills add ayghri/i-have-adhd -a github-copilot -g     # todos os projetos
+npx skills add banavasi/ferret -a github-copilot        # este projeto
+npx skills add banavasi/ferret -a github-copilot -g     # todos os projetos
 ```
 
 Sem a CLI, copie a pasta da skill para qualquer diretório verificado pelo Copilot:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.copilot/skills
-cp -R i-have-adhd/skills/i-have-adhd ~/.copilot/skills/
+cp -R ferret/skills/ferret ~/.copilot/skills/
 ```
 
 ### Verificar
 
-Digite `/` no campo de chat e confirme que `i-have-adhd` aparece. Ou:
+Digite `/` no campo de chat e confirme que `ferret` aparece. Ou:
 
 ```bash
 npx skills list
@@ -252,7 +252,7 @@ npx skills ls -g    # se instalado globalmente
 ### Atualizar
 
 ```bash
-npx skills update i-have-adhd
+npx skills update ferret
 ```
 
 Ou copie a pasta novamente após `git pull`.
@@ -260,14 +260,14 @@ Ou copie a pasta novamente após `git pull`.
 ### Desinstalar
 
 ```bash
-npx skills remove i-have-adhd
+npx skills remove ferret
 ```
 
-Ou exclua a pasta `i-have-adhd` do diretório de skills onde ela foi instalada.
+Ou exclua a pasta `ferret` do diretório de skills onde ela foi instalada.
 
 ### Observação sobre ativação
 
-O Copilot respeita `disable-model-invocation`: nada é aplicado até você invocar a skill, como no Claude Code (testado no [#60](https://github.com/ayghri/i-have-adhd/pull/60)).
+O Copilot respeita `disable-model-invocation`: nada é aplicado até você invocar a skill, como no Claude Code (testado no [#60](https://github.com/banavasi/ferret/pull/60)).
 
 ### Sempre ativo (opcional)
 
@@ -300,17 +300,17 @@ Exceções: explique por completo quando pedirem. Confirme antes de ações dest
 ### Instalar
 
 ```bash
-hermes skills install ayghri/i-have-adhd/skills/i-have-adhd
+hermes skills install banavasi/ferret/skills/ferret
 ```
 
-Digite `/i-have-adhd`. The skill installs into `~/.hermes/skills/` and is exposed as a slash command at the next session start.
+Digite `/ferret`. The skill installs into `~/.hermes/skills/` and is exposed as a slash command at the next session start.
 
 Prefere explorar primeiro? Adicione este repositório como fonte de skills (um "tap"), depois pesquise e instale:
 
 ```bash
-hermes skills tap add ayghri/i-have-adhd
-hermes skills search adhd
-hermes skills install ayghri/i-have-adhd/skills/i-have-adhd
+hermes skills tap add banavasi/ferret
+hermes skills search ferret
+hermes skills install banavasi/ferret/skills/ferret
 ```
 
 ### Verificar
@@ -322,16 +322,16 @@ hermes skills list
 ### Atualizar
 
 ```bash
-hermes skills update i-have-adhd
+hermes skills update ferret
 ```
 
 ### Desinstalar
 
 ```bash
-hermes skills uninstall i-have-adhd
+hermes skills uninstall ferret
 ```
 
-Ou remova também o tap: `hermes skills tap remove ayghri/i-have-adhd`.
+Ou remova também o tap: `hermes skills tap remove banavasi/ferret`.
 
 ### Sempre ativo (opcional)
 
@@ -367,18 +367,18 @@ Inicie uma sessão do Kimi Code e:
 
 1. Execute `/plugins`.
 2. Selecione **Custom**.
-3. Cole `https://github.com/ayghri/i-have-adhd` e pressione Enter.
+3. Cole `https://github.com/banavasi/ferret` e pressione Enter.
 4. Selecione **Trust and install**.
 
-Use o comando slash `/skill:i-have-adhd` para invocar a skill explicitamente.
+Use o comando slash `/skill:ferret` para invocar a skill explicitamente.
 
 ### Atualizar
 
-Em uma sessão do Kimi Code, execute `/plugins`, posicione o cursor em **I Have ADHD** e pressione `R`.
+Em uma sessão do Kimi Code, execute `/plugins`, posicione o cursor em **Ferret** e pressione `R`.
 
 ### Desinstalar
 
-Em uma sessão do Kimi Code, execute `/plugins`, posicione o cursor em **I Have ADHD** e pressione `D`.
+Em uma sessão do Kimi Code, execute `/plugins`, posicione o cursor em **Ferret** e pressione `D`.
 
 </details>
 
@@ -386,62 +386,62 @@ Em uma sessão do Kimi Code, execute `/plugins`, posicione o cursor em **I Have 
 <details>
 <summary><strong>OpenCode</strong></summary>
 
-O plugin suporta OpenCode V1 **1.18.29 ou superior** e V2. Registra a skill e o comando `/i-have-adhd` e oferece o modo sempre ativo opcional. Versões anteriores do V1 precisam ser atualizadas ou usar o plugin da versão anterior da skill.
+O plugin suporta OpenCode V1 **1.18.29 ou superior** e V2. Registra a skill e o comando `/ferret` e oferece o modo sempre ativo opcional. Versões anteriores do V1 precisam ser atualizadas ou usar o plugin da versão anterior da skill.
 
 ### Instalação
 
 Para usar em todos os projetos:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd ~/.config/opencode/vendor/i-have-adhd
+git clone https://github.com/banavasi/ferret ~/.config/opencode/vendor/ferret
 mkdir -p ~/.config/opencode/plugins
-cat > ~/.config/opencode/plugins/i-have-adhd.js <<'EOF'
-export { default } from '../vendor/i-have-adhd/.opencode/plugins/i-have-adhd.mjs';
+cat > ~/.config/opencode/plugins/ferret.js <<'EOF'
+export { default } from '../vendor/ferret/.opencode/plugins/ferret.mjs';
 EOF
 ```
 
 Para uma instalação V1 existente, mantenha a entrada `plugin` em `opencode.json`. Se mudar para o carregador acima, remova essa entrada.
 
-Inicie uma nova sessão e digite `/i-have-adhd`. As regras permanecem até você dizer `stop adhd mode` ou `normal mode`.
+Inicie uma nova sessão e digite `/ferret`. As regras permanecem até você dizer `normal mode` ou `normal mode`.
 
 #### Apenas skill e comando (sem modo sempre ativo)
 
 Como alternativa, copie a skill e o comando do repositório para os diretórios globais do OpenCode:
 
 ```bash
-mkdir -p ~/.config/opencode/skills/i-have-adhd ~/.config/opencode/commands
-cp skills/i-have-adhd/SKILL.md ~/.config/opencode/skills/i-have-adhd/SKILL.md
-cp .opencode/command/i-have-adhd.md ~/.config/opencode/commands/i-have-adhd.md
+mkdir -p ~/.config/opencode/skills/ferret ~/.config/opencode/commands
+cp skills/ferret/SKILL.md ~/.config/opencode/skills/ferret/SKILL.md
+cp .opencode/command/ferret.md ~/.config/opencode/commands/ferret.md
 ```
 
 ### Verificação
 
-Inicie o OpenCode, digite `/` e confirme que `i-have-adhd` aparece na lista de comandos.
+Inicie o OpenCode, digite `/` e confirme que `ferret` aparece na lista de comandos.
 
 ### Atualização
 
 ```bash
-git -C ~/.config/opencode/vendor/i-have-adhd pull
+git -C ~/.config/opencode/vendor/ferret pull
 ```
 
 Na instalação por cópia, atualize o repositório e copie novamente os dois arquivos.
 
 ### Desinstalação
 
-Remova `~/.config/opencode/plugins/i-have-adhd.js`. Na instalação por cópia, remova `~/.config/opencode/skills/i-have-adhd/` e `~/.config/opencode/commands/i-have-adhd.md`. Para uma instalação V1 já configurada, remova a entrada `plugin` correspondente.
+Remova `~/.config/opencode/plugins/ferret.js`. Na instalação por cópia, remova `~/.config/opencode/skills/ferret/` e `~/.config/opencode/commands/ferret.md`. Para uma instalação V1 já configurada, remova a entrada `plugin` correspondente.
 
 ### Sempre ativo (opcional)
 
 Requer o plugin. Criar o arquivo de sinalização adiciona todas as regras ao prompt do sistema em cada turno:
 
 ```bash
-touch ~/.config/opencode/.i-have-adhd-always
+touch ~/.config/opencode/.ferret-always
 ```
 
-`stop adhd mode` ou `normal mode` pede ao agente que volte ao estilo padrão na sessão atual. Remova o arquivo para interromper a inclusão automática:
+`normal mode` ou `normal mode` pede ao agente que volte ao estilo padrão na sessão atual. Remova o arquivo para interromper a inclusão automática:
 
 ```bash
-rm ~/.config/opencode/.i-have-adhd-always
+rm ~/.config/opencode/.ferret-always
 ```
 
 Se `XDG_CONFIG_HOME` estiver definido, substitua `~/.config` nesses caminhos por esse diretório.
@@ -456,15 +456,15 @@ O Pi implementa o padrão Agent Skills, portanto o mesmo `SKILL.md` é carregado
 ### Instalar
 
 ```bash
-npx skills add ayghri/i-have-adhd -a pi -y
+npx skills add banavasi/ferret -a pi -y
 ```
 
 Prefere usar o sistema de arquivos? O Pi encontra skills em `~/.pi/agent/skills/` e `~/.agents/skills/` (global), e em `.pi/skills/` e `.agents/skills/` (projeto):
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.pi/agent/skills
-cp -R i-have-adhd/skills/i-have-adhd ~/.pi/agent/skills/
+cp -R ferret/skills/ferret ~/.pi/agent/skills/
 ```
 
 Ative os comandos de barra de skills no `settings.json` do Pi:
@@ -473,7 +473,7 @@ Ative os comandos de barra de skills no `settings.json` do Pi:
 { "enableSkillCommands": true }
 ```
 
-Inicie uma nova sessão e digite `/skill:i-have-adhd`.
+Inicie uma nova sessão e digite `/skill:ferret`.
 
 ### Verificar
 
@@ -481,12 +481,12 @@ Inicie uma nova sessão e digite `/skill:i-have-adhd`.
 npx skills list
 ```
 
-Ou digite `/skill:` em uma sessão e confirme que `i-have-adhd` aparece na lista.
+Ou digite `/skill:` em uma sessão e confirme que `ferret` aparece na lista.
 
 ### Atualizar
 
 ```bash
-npx skills update i-have-adhd
+npx skills update ferret
 ```
 
 Ou copie a pasta novamente após `git pull`.
@@ -494,10 +494,10 @@ Ou copie a pasta novamente após `git pull`.
 ### Desinstalar
 
 ```bash
-npx skills remove i-have-adhd
+npx skills remove ferret
 ```
 
-Ou exclua `~/.pi/agent/skills/i-have-adhd`.
+Ou exclua `~/.pi/agent/skills/ferret`.
 
 ### Sempre ativo (opcional)
 
@@ -531,12 +531,12 @@ Exceções: explique por completo quando pedirem. Confirme antes de ações dest
 ### Instalar
 
 ```bash
-qwen extensions install ayghri/i-have-adhd
+qwen extensions install banavasi/ferret
 ```
 
 O Qwen Code aceita a forma abreviada do GitHub e instala o repositório como extensão nativa. A extensão encontra a skill em `skills/`.
 
-Digite `/i-have-adhd` para invocar a skill explicitamente. Instalar a extensão não altera a saída até que a skill seja invocada.
+Digite `/ferret` para invocar a skill explicitamente. Instalar a extensão não altera a saída até que a skill seja invocada.
 
 ### Verificar
 
@@ -550,18 +550,18 @@ Depois, inicie uma nova sessão do Qwen Code e execute:
 /skills
 ```
 
-Confirme que `i-have-adhd` aparece na lista.
+Confirme que `ferret` aparece na lista.
 
 ### Atualizar
 
 ```bash
-qwen extensions update i-have-adhd
+qwen extensions update ferret
 ```
 
 ### Desinstalar
 
 ```bash
-qwen extensions uninstall i-have-adhd
+qwen extensions uninstall ferret
 ```
 
 </details>
@@ -576,22 +576,22 @@ O Agent do Zed lê Agent Skills nativamente: usa o mesmo `SKILL.md`, sem convers
 No Agent Panel, abra o gerenciador de Skills, escolha **Create skill from URL** (também disponível na paleta como `agent: create skill from url`) e cole:
 
 ```
-https://github.com/ayghri/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md
+https://github.com/banavasi/ferret/blob/main/skills/ferret/SKILL.md
 ```
 
-Salve no escopo **User** para todos os projetos ou **Project** para apenas um. Depois, digite `/i-have-adhd` no Agent Panel.
+Salve no escopo **User** para todos os projetos ou **Project** para apenas um. Depois, digite `/ferret` no Agent Panel.
 
 Prefere o sistema de arquivos? Clone o repositório e coloque a pasta da skill no diretório de skills do usuário:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.agents/skills
-cp -R i-have-adhd/skills/i-have-adhd ~/.agents/skills/
+cp -R ferret/skills/ferret ~/.agents/skills/
 ```
 
 ### Verificar
 
-Abra o gerenciador de Skills no Agent Panel e confirme que `i-have-adhd` aparece. Ou digite `/` e confira.
+Abra o gerenciador de Skills no Agent Panel e confirme que `ferret` aparece. Ou digite `/` e confira.
 
 ### Atualizar
 
@@ -599,7 +599,7 @@ Importe novamente pela mesma URL (sobrescreve) ou copie a pasta de novo após `g
 
 ### Desinstalar
 
-Remova `i-have-adhd` do gerenciador de Skills ou exclua `~/.agents/skills/i-have-adhd`.
+Remova `ferret` do gerenciador de Skills ou exclua `~/.agents/skills/ferret`.
 
 ### Sempre ativo (opcional)
 
@@ -634,20 +634,20 @@ Funciona com qualquer ambiente que leia Agent Skills. Troque `-a <agent>` pelo s
 ### Instalar
 
 ```bash
-npx skills add ayghri/i-have-adhd                  # this workspace
-npx skills add ayghri/i-have-adhd -g               # todos os projetos
-npx skills add ayghri/i-have-adhd -a cursor -y     # one agent only
-npx skills add ayghri/i-have-adhd -a opencode -y
+npx skills add banavasi/ferret                  # this workspace
+npx skills add banavasi/ferret -g               # todos os projetos
+npx skills add banavasi/ferret -a cursor -y     # one agent only
+npx skills add banavasi/ferret -a opencode -y
 ```
 
-Abra um novo chat do agente e digite `/i-have-adhd`.
+Abra um novo chat do agente e digite `/ferret`.
 
 Sem a CLI, copie a pasta da skill para o caminho verificado pelo seu agente:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/banavasi/ferret
 mkdir -p ~/.cursor/skills     # Cursor. Use .agents/skills no OpenCode ou o caminho próprio do agente
-cp -R i-have-adhd/skills/i-have-adhd ~/.cursor/skills/
+cp -R ferret/skills/ferret ~/.cursor/skills/
 ```
 
 ### Verificar
@@ -660,15 +660,15 @@ npx skills ls -g    # se instalado globalmente
 ### Atualizar
 
 ```bash
-npx skills update i-have-adhd
+npx skills update ferret
 npx skills update -g    # se instalado globalmente
 ```
 
 ### Desinstalar
 
 ```bash
-npx skills remove i-have-adhd
-npx skills remove i-have-adhd -g    # se instalado globalmente
+npx skills remove ferret
+npx skills remove ferret -g    # se instalado globalmente
 ```
 
 ### Sempre ativo (opcional)
@@ -699,31 +699,31 @@ Exceções: explique por completo quando pedirem. Confirme antes de ações dest
 ## Como a ativação funciona
 
 1. **Instalada, mas não invocada.** No Claude Code, Qwen Code e Codex, nada acontece até que você invoque a skill explicitamente. Claude Code e Qwen Code respeitam `disable-model-invocation: true` em `SKILL.md`; o Codex respeita `policy.allow_implicit_invocation: false` em `agents/openai.yaml`. Outros ambientes podem carregar a descrição de cada skill na inicialização e ativá-la por conta própria.
-2. **Você a invoca explicitamente.** Digite `/i-have-adhd` no Claude Code ou Qwen Code, ou `$i-have-adhd` no Codex. As regras ficam ativas nessa sessão. "stop adhd mode" ou "normal mode" as desativa.
-3. **Você cria `~/.claude/.i-have-adhd-always`** (Claude Code). Um hook `SessionStart` carrega todas as regras desde a primeira mensagem, em toda sessão.
+2. **Você a invoca explicitamente.** Digite `/ferret` no Claude Code ou Qwen Code, ou `$ferret` no Codex. As regras ficam ativas nessa sessão. "normal mode" ou "normal mode" as desativa.
+3. **Você cria `~/.claude/.ferret-always`** (Claude Code). Um hook `SessionStart` carrega todas as regras desde a primeira mensagem, em toda sessão.
 4. **Você adiciona o trecho sempre ativo acima** (outros ambientes). Isso mantém as regras principais no contexto persistente do agente.
 
 No Claude Code, Qwen Code e Codex não há meio-termo: se você não ativou, está desativado.
 
 ## Solução de problemas
 
-**`/i-have-adhd` não aparece no preenchimento automático.** Reinicie o agente. O índice de plugins é lido na inicialização.
+**`/ferret` não aparece no preenchimento automático.** Reinicie o agente. O índice de plugins é lido na inicialização.
 
-**A flag de sempre ativo não funciona.** Atualize o plugin (`claude plugin marketplace update i-have-adhd` e depois `claude plugin update i-have-adhd@i-have-adhd`) e reinicie. Hooks são lidos na inicialização, e a flag exige a versão que inclui `hooks/hooks.json`.
+**A flag de sempre ativo não funciona.** Atualize o plugin (`claude plugin marketplace update ferret` e depois `claude plugin update ferret@ferret`) e reinicie. Hooks são lidos na inicialização, e a flag exige a versão que inclui `hooks/hooks.json`.
 
 **`claude plugin marketplace add` falha.** Use o formato `owner/repo`. Um caminho local deve apontar para a raiz do repositório, não para `.claude-plugin/`.
 
-**Instalada, mas as respostas ainda têm preâmbulo.** Abra uma nova sessão. Se continuar desviando, torne mais rigoroso o texto em `skills/i-have-adhd/SKILL.md`.
+**Instalada, mas as respostas ainda têm preâmbulo.** Abra uma nova sessão. Se continuar desviando, torne mais rigoroso o texto em `skills/ferret/SKILL.md`.
 
-**Quer regras diferentes.** Faça um fork, edite `skills/i-have-adhd/SKILL.md` e troque pela sua cópia:
+**Quer regras diferentes.** Faça um fork, edite `skills/ferret/SKILL.md` e troque pela sua cópia:
 
 ```bash
-claude plugin uninstall i-have-adhd            # remova primeiro a cópia upstream:
-claude plugin marketplace remove i-have-adhd   # o fork e o upstream usam o mesmo nome
-claude plugin marketplace add <your-username>/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
+claude plugin uninstall ferret            # remova primeiro a cópia upstream:
+claude plugin marketplace remove ferret   # o fork e o upstream usam o mesmo nome
+claude plugin marketplace add <your-username>/ferret
+claude plugin install ferret@ferret
 ```
 
-Reinicie e invoque `/i-have-adhd` novamente.
+Reinicie e invoque `/ferret` novamente.
 
 **A skill não aparece após `npx skills add`.** Abra um novo chat do agente. Skills são indexadas no início da sessão. Confirme que a pasta foi instalada onde o agente procura (`~/.cursor/skills/` no Cursor, `.agents/skills/` no OpenCode) e que o `name` no frontmatter corresponde ao nome da pasta.
