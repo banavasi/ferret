@@ -11,11 +11,15 @@
 <p align="center">
   <a href="../../README.md" title="English" aria-label="English">🇬🇧</a> ·
   <a href="README.zh-CN.md" title="简体中文" aria-label="简体中文">🇨🇳</a> ·
+  <a href="README.id.md" title="Bahasa Indonesia" aria-label="Bahasa Indonesia">🇮🇩</a> ·
   <a href="README.pt-BR.md" title="Português (Brasil)" aria-label="Português (Brasil)">🇧🇷</a> ·
   <a href="README.ja.md" title="日本語" aria-label="日本語">🇯🇵</a> ·
   <a href="README.vi.md" title="Tiếng Việt" aria-label="Tiếng Việt">🇻🇳</a> ·
   <a href="README.ko.md" title="한국어" aria-label="한국어">🇰🇷</a> ·
-  <strong title="ภาษาไทย" aria-label="ภาษาไทย">🇹🇭</strong>
+  <a href="README.fa.md" title="فارسی" aria-label="فارسی">🇮🇷</a> ·
+  <strong title="ภาษาไทย" aria-label="ภาษาไทย">🇹🇭</strong> ·
+  <a href="README.ar.md" title="العربية" aria-label="العربية">🇸🇦</a> ·
+  <a href="README.fr.md" title="Français" aria-label="Français">🇫🇷</a>
 </p>
 
 ## การติดตั้ง
@@ -48,7 +52,7 @@ Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd,
 
 ## หลังใช้
 
-> รัน `npm install jsonwebtoken@latest` แล้วแก้ไขไฟล์ `src/auth.ts:42`
+> แก้ไข `src/auth.ts:42` เพื่ออัปเดตการตรวจสอบโทเค็น
 >
 > 1. เปิดไฟล์ `src/auth.ts`
 > 2. แทนที่ฟังก์ชัน `verifyToken` (บรรทัดที่ 42–58) ด้วยโค้ดด้านล่าง
@@ -72,7 +76,7 @@ Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd,
 6. ต้องระบุเวลาอย่างชัดเจน (ระบุเป็นจำนวนนาที ไม่ใช่แค่คำว่า “สักพักนะ”)
 7. ทำให้ความสำเร็จและความคืบหน้าชัดเจน
 8. อธิบายข้อผิดพลาดอย่างตรงไปตรงมา
-9. จัดลำดับรายการที่ยาวตามความสำคัญและแบ่งเป็นกลุ่ม โดยตั้งเป้าไม่เกิน 5 ข้อต่อกลุ่ม และไม่ละรายการที่เกี่ยวข้อง
+9. จำกัดรายการไม่เกิน 5 ข้อ
 10. ไม่มีคำนำ ไม่ต้องสรุปซ้ำ และไม่มีคำลงท้ายที่ไม่จำเป็น
 
 ## ปรับแต่งเพิ่มเติม
@@ -94,6 +98,6 @@ claude plugin install i-have-adhd@i-have-adhd
 
 ## สัญญาอนุญาต
 
-MIT
+[MIT](../../LICENSE)
 
 กดดาว ⭐ หากมันช่วยให้คุณไม่ต้องเลื่อนผ่านคำว่า “เป็นคำถามที่ดีมาก!” อีกครั้ง

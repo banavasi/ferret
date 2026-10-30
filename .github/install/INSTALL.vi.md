@@ -47,7 +47,7 @@ Người đọc có ADHD. Hãy định dạng mọi phản hồi để họ có 
 6. Ước tính thời gian bằng đơn vị cụ thể, không nói "một chút".
 7. Sau khi thay đổi, hãy cho biết điều gì hiện đã hoạt động.
 8. Với lỗi, nêu vị trí, nguyên nhân và cách sửa một cách khách quan.
-9. Sắp xếp danh sách dài theo mức độ liên quan, cố gắng giữ mỗi nhóm không quá 5 mục và không bỏ sót mục liên quan.
+9. Giới hạn danh sách ở 5 mục.
 10. Không mở đầu, không tóm tắt lại, không lời kết.
 
 Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận trước thao tác phá hủy dữ liệu. Sau ba lần sửa thất bại, dừng lại và nêu giả định đáng ngờ. Nếu yêu cầu mơ hồ, hãy hỏi một câu ngắn.
@@ -77,6 +77,7 @@ claude plugin list
 
 ```bash
 claude plugin marketplace update i-have-adhd
+claude plugin update i-have-adhd@i-have-adhd
 ```
 
 ### Gỡ cài đặt
@@ -163,7 +164,7 @@ Người đọc có ADHD. Hãy định dạng mọi phản hồi để họ có 
 6. Ước tính thời gian bằng đơn vị cụ thể, không nói "một chút".
 7. Sau khi thay đổi, hãy cho biết điều gì hiện đã hoạt động.
 8. Với lỗi, nêu vị trí, nguyên nhân và cách sửa một cách khách quan.
-9. Sắp xếp danh sách dài theo mức độ liên quan, cố gắng giữ mỗi nhóm không quá 5 mục và không bỏ sót mục liên quan.
+9. Giới hạn danh sách ở 5 mục.
 10. Không mở đầu, không tóm tắt lại, không lời kết.
 
 Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận trước thao tác phá hủy dữ liệu. Sau ba lần sửa thất bại, dừng lại và nêu giả định đáng ngờ. Nếu yêu cầu mơ hồ, hãy hỏi một câu ngắn.
@@ -285,7 +286,7 @@ Người đọc có ADHD. Hãy định dạng mọi phản hồi để họ có 
 6. Ước tính thời gian bằng đơn vị cụ thể, không nói "một chút".
 7. Sau khi thay đổi, hãy cho biết điều gì hiện đã hoạt động.
 8. Với lỗi, nêu vị trí, nguyên nhân và cách sửa một cách khách quan.
-9. Sắp xếp danh sách dài theo mức độ liên quan, cố gắng giữ mỗi nhóm không quá 5 mục và không bỏ sót mục liên quan.
+9. Giới hạn danh sách ở 5 mục.
 10. Không mở đầu, không tóm tắt lại, không lời kết.
 
 Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận trước thao tác phá hủy dữ liệu. Sau ba lần sửa thất bại, dừng lại và nêu giả định đáng ngờ. Nếu yêu cầu mơ hồ, hãy hỏi một câu ngắn.
@@ -349,7 +350,7 @@ Người đọc có ADHD. Hãy định dạng mọi phản hồi để họ có 
 6. Ước tính thời gian bằng đơn vị cụ thể, không nói "một chút".
 7. Sau khi thay đổi, hãy cho biết điều gì hiện đã hoạt động.
 8. Với lỗi, nêu vị trí, nguyên nhân và cách sửa một cách khách quan.
-9. Sắp xếp danh sách dài theo mức độ liên quan, cố gắng giữ mỗi nhóm không quá 5 mục và không bỏ sót mục liên quan.
+9. Giới hạn danh sách ở 5 mục.
 10. Không mở đầu, không tóm tắt lại, không lời kết.
 
 Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận trước thao tác phá hủy dữ liệu. Sau ba lần sửa thất bại, dừng lại và nêu giả định đáng ngờ. Nếu yêu cầu mơ hồ, hãy hỏi một câu ngắn.
@@ -381,6 +382,71 @@ Trong phiên Kimi Code, chạy `/plugins`, đưa con trỏ đến **I Have ADHD*
 
 </details>
 
+
+<details>
+<summary><strong>OpenCode</strong></summary>
+
+Plugin hỗ trợ OpenCode V1 **từ 1.18.29** và V2. Plugin đăng ký skill, lệnh `/i-have-adhd` và chế độ luôn bật tùy chọn. V1 cũ hơn cần nâng cấp hoặc dùng plugin từ bản phát hành skill trước đó.
+
+### Cài đặt
+
+Để dùng trong mọi dự án:
+
+```bash
+git clone https://github.com/ayghri/i-have-adhd ~/.config/opencode/vendor/i-have-adhd
+mkdir -p ~/.config/opencode/plugins
+cat > ~/.config/opencode/plugins/i-have-adhd.js <<'EOF'
+export { default } from '../vendor/i-have-adhd/.opencode/plugins/i-have-adhd.mjs';
+EOF
+```
+
+Với cài đặt V1 hiện có, giữ mục `plugin` trong `opencode.json`. Nếu chuyển sang tệp nạp ở trên, hãy xóa mục đó.
+
+Mở phiên mới và nhập `/i-have-adhd`. Các quy tắc duy trì đến khi bạn nói `stop adhd mode` hoặc `normal mode`.
+
+#### Chỉ skill và lệnh (không có chế độ luôn bật)
+
+Hoặc sao chép skill và lệnh từ kho mã vào các thư mục toàn cục của OpenCode:
+
+```bash
+mkdir -p ~/.config/opencode/skills/i-have-adhd ~/.config/opencode/commands
+cp skills/i-have-adhd/SKILL.md ~/.config/opencode/skills/i-have-adhd/SKILL.md
+cp .opencode/command/i-have-adhd.md ~/.config/opencode/commands/i-have-adhd.md
+```
+
+### Kiểm tra
+
+Khởi động OpenCode, nhập `/` và xác nhận `i-have-adhd` có trong danh sách lệnh.
+
+### Cập nhật
+
+```bash
+git -C ~/.config/opencode/vendor/i-have-adhd pull
+```
+
+Với cách cài bằng sao chép, cập nhật kho mã rồi sao chép lại hai tệp.
+
+### Gỡ cài đặt
+
+Xóa `~/.config/opencode/plugins/i-have-adhd.js`. Với cách cài bằng sao chép, xóa `~/.config/opencode/skills/i-have-adhd/` và `~/.config/opencode/commands/i-have-adhd.md`. Với cài đặt V1 dùng cấu hình hiện có, xóa mục `plugin` tương ứng.
+
+### Luôn bật (không bắt buộc)
+
+Cần plugin. Khi tạo tệp cờ, toàn bộ quy tắc được thêm vào lời nhắc hệ thống ở mỗi lượt:
+
+```bash
+touch ~/.config/opencode/.i-have-adhd-always
+```
+
+`stop adhd mode` hoặc `normal mode` yêu cầu agent trở lại cách trả lời mặc định trong phiên hiện tại. Xóa tệp cờ để ngừng tự động thêm quy tắc:
+
+```bash
+rm ~/.config/opencode/.i-have-adhd-always
+```
+
+Nếu có đặt `XDG_CONFIG_HOME`, thay `~/.config` trong các đường dẫn này bằng thư mục đó.
+
+</details>
 
 <details>
 <summary><strong>Pi</strong></summary>
@@ -450,7 +516,7 @@ Người đọc có ADHD. Hãy định dạng mọi phản hồi để họ có 
 6. Ước tính thời gian bằng đơn vị cụ thể, không nói "một chút".
 7. Sau khi thay đổi, hãy cho biết điều gì hiện đã hoạt động.
 8. Với lỗi, nêu vị trí, nguyên nhân và cách sửa một cách khách quan.
-9. Sắp xếp danh sách dài theo mức độ liên quan, cố gắng giữ mỗi nhóm không quá 5 mục và không bỏ sót mục liên quan.
+9. Giới hạn danh sách ở 5 mục.
 10. Không mở đầu, không tóm tắt lại, không lời kết.
 
 Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận trước thao tác phá hủy dữ liệu. Sau ba lần sửa thất bại, dừng lại và nêu giả định đáng ngờ. Nếu yêu cầu mơ hồ, hãy hỏi một câu ngắn.
@@ -519,7 +585,8 @@ Muốn dùng hệ thống tệp? Clone repo và đặt thư mục skill vào th�
 
 ```bash
 git clone https://github.com/ayghri/i-have-adhd
-cp -R i-have-adhd/skills/i-have-adhd ~/.config/zed/skills/
+mkdir -p ~/.agents/skills
+cp -R i-have-adhd/skills/i-have-adhd ~/.agents/skills/
 ```
 
 ### Xác minh
@@ -532,7 +599,7 @@ Nhập lại từ cùng URL (ghi đè), hoặc sao chép lại thư mục sau `g
 
 ### Gỡ cài đặt
 
-Xóa `i-have-adhd` khỏi trình quản lý Skills, hoặc xóa `~/.config/zed/skills/i-have-adhd`.
+Xóa `i-have-adhd` khỏi trình quản lý Skills, hoặc xóa `~/.agents/skills/i-have-adhd`.
 
 ### Luôn bật (không bắt buộc)
 
@@ -551,7 +618,7 @@ Người đọc có ADHD. Hãy định dạng mọi phản hồi để họ có 
 6. Ước tính thời gian bằng đơn vị cụ thể, không nói "một chút".
 7. Sau khi thay đổi, hãy cho biết điều gì hiện đã hoạt động.
 8. Với lỗi, nêu vị trí, nguyên nhân và cách sửa một cách khách quan.
-9. Sắp xếp danh sách dài theo mức độ liên quan, cố gắng giữ mỗi nhóm không quá 5 mục và không bỏ sót mục liên quan.
+9. Giới hạn danh sách ở 5 mục.
 10. Không mở đầu, không tóm tắt lại, không lời kết.
 
 Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận trước thao tác phá hủy dữ liệu. Sau ba lần sửa thất bại, dừng lại và nêu giả định đáng ngờ. Nếu yêu cầu mơ hồ, hãy hỏi một câu ngắn.
@@ -560,7 +627,7 @@ Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận tr
 </details>
 
 <details>
-<summary><strong>Cursor, OpenCode, Amp và mọi môi trường agent-skills khác</strong></summary>
+<summary><strong>Cursor, Amp và mọi môi trường agent-skills khác</strong></summary>
 
 Hoạt động với mọi môi trường đọc Agent Skills. Thay `-a <agent>` bằng agent của bạn.
 
@@ -621,7 +688,7 @@ Người đọc có ADHD. Hãy định dạng mọi phản hồi để họ có 
 6. Ước tính thời gian bằng đơn vị cụ thể, không nói "một chút".
 7. Sau khi thay đổi, hãy cho biết điều gì hiện đã hoạt động.
 8. Với lỗi, nêu vị trí, nguyên nhân và cách sửa một cách khách quan.
-9. Sắp xếp danh sách dài theo mức độ liên quan, cố gắng giữ mỗi nhóm không quá 5 mục và không bỏ sót mục liên quan.
+9. Giới hạn danh sách ở 5 mục.
 10. Không mở đầu, không tóm tắt lại, không lời kết.
 
 Ngoại lệ: giải thích đầy đủ khi được yêu cầu. Xác nhận trước thao tác phá hủy dữ liệu. Sau ba lần sửa thất bại, dừng lại và nêu giả định đáng ngờ. Nếu yêu cầu mơ hồ, hãy hỏi một câu ngắn.
@@ -642,7 +709,7 @@ Trong Claude Code, Qwen Code và Codex không có trạng thái trung gian: nế
 
 **`/i-have-adhd` không có trong tự động hoàn thành.** Khởi động lại agent. Chỉ mục plugin được đọc khi khởi động.
 
-**Cờ luôn bật không có tác dụng.** Cập nhật plugin (`claude plugin marketplace update i-have-adhd`) và khởi động lại. Hook được đọc khi khởi động, và cờ cần phiên bản plugin có `hooks/hooks.json`.
+**Cờ luôn bật không có tác dụng.** Cập nhật plugin (`claude plugin marketplace update i-have-adhd`, sau đó `claude plugin update i-have-adhd@i-have-adhd`) và khởi động lại. Hook được đọc khi khởi động, và cờ cần phiên bản plugin có `hooks/hooks.json`.
 
 **`claude plugin marketplace add` thất bại.** Dùng dạng `owner/repo`. Đường dẫn cục bộ phải trỏ đến thư mục gốc repo, không phải `.claude-plugin/`.
 

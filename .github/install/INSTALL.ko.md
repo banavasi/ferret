@@ -47,7 +47,7 @@ agy plugin uninstall i-have-adhd
 6. 시간은 구체적인 단위로 예상하고 "조금"이라고 하지 마세요.
 7. 변경 후에는 이제 무엇이 작동하는지 보여 주세요.
 8. 오류는 위치, 원인, 해결 방법을 담담하게 알려 주세요.
-9. 긴 목록은 중요도순으로 정렬하고 그룹당 최대 5개 항목을 목표로 나누되, 관련 항목은 생략하지 마세요.
+9. 목록은 최대 5개 항목으로 제한하세요.
 10. 서론, 요약, 마무리 인사를 넣지 마세요.
 
 예외: 설명을 요청받으면 충분히 설명하세요. 파괴적인 작업 전에는 확인하세요. 세 번의 수정이 실패하면 멈추고 의심되는 가정을 밝히세요. 요청이 모호하면 짧은 질문 하나를 하세요.
@@ -77,6 +77,7 @@ claude plugin list
 
 ```bash
 claude plugin marketplace update i-have-adhd
+claude plugin update i-have-adhd@i-have-adhd
 ```
 
 ### 제거
@@ -163,7 +164,7 @@ codex plugin marketplace remove i-have-adhd
 6. 시간은 구체적인 단위로 예상하고 "조금"이라고 하지 마세요.
 7. 변경 후에는 이제 무엇이 작동하는지 보여 주세요.
 8. 오류는 위치, 원인, 해결 방법을 담담하게 알려 주세요.
-9. 긴 목록은 중요도순으로 정렬하고 그룹당 최대 5개 항목을 목표로 나누되, 관련 항목은 생략하지 마세요.
+9. 목록은 최대 5개 항목으로 제한하세요.
 10. 서론, 요약, 마무리 인사를 넣지 마세요.
 
 예외: 설명을 요청받으면 충분히 설명하세요. 파괴적인 작업 전에는 확인하세요. 세 번의 수정이 실패하면 멈추고 의심되는 가정을 밝히세요. 요청이 모호하면 짧은 질문 하나를 하세요.
@@ -285,7 +286,7 @@ Copilot은 `disable-model-invocation`을 따릅니다. Claude Code와 마찬가�
 6. 시간은 구체적인 단위로 예상하고 "조금"이라고 하지 마세요.
 7. 변경 후에는 이제 무엇이 작동하는지 보여 주세요.
 8. 오류는 위치, 원인, 해결 방법을 담담하게 알려 주세요.
-9. 긴 목록은 중요도순으로 정렬하고 그룹당 최대 5개 항목을 목표로 나누되, 관련 항목은 생략하지 마세요.
+9. 목록은 최대 5개 항목으로 제한하세요.
 10. 서론, 요약, 마무리 인사를 넣지 마세요.
 
 예외: 설명을 요청받으면 충분히 설명하세요. 파괴적인 작업 전에는 확인하세요. 세 번의 수정이 실패하면 멈추고 의심되는 가정을 밝히세요. 요청이 모호하면 짧은 질문 하나를 하세요.
@@ -349,7 +350,7 @@ tap도 제거하려면 `hermes skills tap remove ayghri/i-have-adhd`를 실행�
 6. 시간은 구체적인 단위로 예상하고 "조금"이라고 하지 마세요.
 7. 변경 후에는 이제 무엇이 작동하는지 보여 주세요.
 8. 오류는 위치, 원인, 해결 방법을 담담하게 알려 주세요.
-9. 긴 목록은 중요도순으로 정렬하고 그룹당 최대 5개 항목을 목표로 나누되, 관련 항목은 생략하지 마세요.
+9. 목록은 최대 5개 항목으로 제한하세요.
 10. 서론, 요약, 마무리 인사를 넣지 마세요.
 
 예외: 설명을 요청받으면 충분히 설명하세요. 파괴적인 작업 전에는 확인하세요. 세 번의 수정이 실패하면 멈추고 의심되는 가정을 밝히세요. 요청이 모호하면 짧은 질문 하나를 하세요.
@@ -381,6 +382,71 @@ Kimi Code 세션에서 `/plugins`를 실행하고 **I Have ADHD**에 커서를 �
 
 </details>
 
+
+<details>
+<summary><strong>OpenCode</strong></summary>
+
+플러그인은 OpenCode V1 **1.18.29 이상**과 V2를 지원합니다. 스킬과 `/i-have-adhd` 명령을 등록하고 선택 사항인 항상 활성화 모드를 제공합니다. 이전 V1 버전은 업그레이드하거나 이전 스킬 릴리스의 플러그인을 사용하세요.
+
+### 설치
+
+모든 프로젝트에서 사용하려면:
+
+```bash
+git clone https://github.com/ayghri/i-have-adhd ~/.config/opencode/vendor/i-have-adhd
+mkdir -p ~/.config/opencode/plugins
+cat > ~/.config/opencode/plugins/i-have-adhd.js <<'EOF'
+export { default } from '../vendor/i-have-adhd/.opencode/plugins/i-have-adhd.mjs';
+EOF
+```
+
+기존 V1 설치에서는 `opencode.json`의 `plugin` 항목을 유지하세요. 위 로더로 전환한다면 해당 항목을 제거하세요.
+
+새 세션에서 `/i-have-adhd`를 입력하세요. `stop adhd mode` 또는 `normal mode`를 입력할 때까지 규칙이 유지됩니다.
+
+#### 스킬과 명령만 설치(항상 활성화 없음)
+
+대신 저장소에서 스킬과 명령을 OpenCode의 전역 디렉터리에 복사할 수 있습니다:
+
+```bash
+mkdir -p ~/.config/opencode/skills/i-have-adhd ~/.config/opencode/commands
+cp skills/i-have-adhd/SKILL.md ~/.config/opencode/skills/i-have-adhd/SKILL.md
+cp .opencode/command/i-have-adhd.md ~/.config/opencode/commands/i-have-adhd.md
+```
+
+### 확인
+
+OpenCode를 시작하고 `/`를 입력해 명령 목록에 `i-have-adhd`가 있는지 확인하세요.
+
+### 업데이트
+
+```bash
+git -C ~/.config/opencode/vendor/i-have-adhd pull
+```
+
+복사 방식으로 설치했다면 저장소를 업데이트한 후 두 파일을 다시 복사하세요.
+
+### 제거
+
+`~/.config/opencode/plugins/i-have-adhd.js`를 삭제하세요. 복사 방식으로 설치했다면 `~/.config/opencode/skills/i-have-adhd/`와 `~/.config/opencode/commands/i-have-adhd.md`를 삭제하세요. 기존 V1 설정 방식에서는 해당 `plugin` 항목을 제거하세요.
+
+### 항상 활성화(선택 사항)
+
+플러그인이 필요합니다. 플래그를 만들면 매 턴마다 전체 규칙이 시스템 프롬프트에 추가됩니다:
+
+```bash
+touch ~/.config/opencode/.i-have-adhd-always
+```
+
+`stop adhd mode` 또는 `normal mode`는 현재 세션에서 기본 응답 스타일로 돌아가도록 에이전트에 요청합니다. 자동 주입을 멈추려면 플래그를 삭제하세요:
+
+```bash
+rm ~/.config/opencode/.i-have-adhd-always
+```
+
+`XDG_CONFIG_HOME`이 설정되어 있다면 이 경로들의 `~/.config`를 해당 디렉터리로 바꾸세요.
+
+</details>
 
 <details>
 <summary><strong>Pi</strong></summary>
@@ -450,7 +516,7 @@ npx skills remove i-have-adhd
 6. 시간은 구체적인 단위로 예상하고 "조금"이라고 하지 마세요.
 7. 변경 후에는 이제 무엇이 작동하는지 보여 주세요.
 8. 오류는 위치, 원인, 해결 방법을 담담하게 알려 주세요.
-9. 긴 목록은 중요도순으로 정렬하고 그룹당 최대 5개 항목을 목표로 나누되, 관련 항목은 생략하지 마세요.
+9. 목록은 최대 5개 항목으로 제한하세요.
 10. 서론, 요약, 마무리 인사를 넣지 마세요.
 
 예외: 설명을 요청받으면 충분히 설명하세요. 파괴적인 작업 전에는 확인하세요. 세 번의 수정이 실패하면 멈추고 의심되는 가정을 밝히세요. 요청이 모호하면 짧은 질문 하나를 하세요.
@@ -519,7 +585,8 @@ https://github.com/ayghri/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md
 
 ```bash
 git clone https://github.com/ayghri/i-have-adhd
-cp -R i-have-adhd/skills/i-have-adhd ~/.config/zed/skills/
+mkdir -p ~/.agents/skills
+cp -R i-have-adhd/skills/i-have-adhd ~/.agents/skills/
 ```
 
 ### 확인
@@ -532,7 +599,7 @@ Agent Panel에서 Skills 관리자를 열어 `i-have-adhd`가 목록에 있는�
 
 ### 제거
 
-Skills 관리자에서 `i-have-adhd`를 제거하거나 `~/.config/zed/skills/i-have-adhd`를 삭제하세요.
+Skills 관리자에서 `i-have-adhd`를 제거하거나 `~/.agents/skills/i-have-adhd`를 삭제하세요.
 
 ### 항상 활성화(선택 사항)
 
@@ -551,7 +618,7 @@ Skills 관리자에서 `i-have-adhd`를 제거하거나 `~/.config/zed/skills/i-
 6. 시간은 구체적인 단위로 예상하고 "조금"이라고 하지 마세요.
 7. 변경 후에는 이제 무엇이 작동하는지 보여 주세요.
 8. 오류는 위치, 원인, 해결 방법을 담담하게 알려 주세요.
-9. 긴 목록은 중요도순으로 정렬하고 그룹당 최대 5개 항목을 목표로 나누되, 관련 항목은 생략하지 마세요.
+9. 목록은 최대 5개 항목으로 제한하세요.
 10. 서론, 요약, 마무리 인사를 넣지 마세요.
 
 예외: 설명을 요청받으면 충분히 설명하세요. 파괴적인 작업 전에는 확인하세요. 세 번의 수정이 실패하면 멈추고 의심되는 가정을 밝히세요. 요청이 모호하면 짧은 질문 하나를 하세요.
@@ -560,7 +627,7 @@ Skills 관리자에서 `i-have-adhd`를 제거하거나 `~/.config/zed/skills/i-
 </details>
 
 <details>
-<summary><strong>Cursor, OpenCode, Amp 및 기타 agent-skills 실행 환경</strong></summary>
+<summary><strong>Cursor, Amp 및 기타 agent-skills 실행 환경</strong></summary>
 
 Agent Skills를 읽는 모든 실행 환경에서 작동합니다. `-a <agent>`를 사용하는 에이전트로 바꾸세요.
 
@@ -621,7 +688,7 @@ npx skills remove i-have-adhd -g    # 전역 설치한 경우
 6. 시간은 구체적인 단위로 예상하고 "조금"이라고 하지 마세요.
 7. 변경 후에는 이제 무엇이 작동하는지 보여 주세요.
 8. 오류는 위치, 원인, 해결 방법을 담담하게 알려 주세요.
-9. 긴 목록은 중요도순으로 정렬하고 그룹당 최대 5개 항목을 목표로 나누되, 관련 항목은 생략하지 마세요.
+9. 목록은 최대 5개 항목으로 제한하세요.
 10. 서론, 요약, 마무리 인사를 넣지 마세요.
 
 예외: 설명을 요청받으면 충분히 설명하세요. 파괴적인 작업 전에는 확인하세요. 세 번의 수정이 실패하면 멈추고 의심되는 가정을 밝히세요. 요청이 모호하면 짧은 질문 하나를 하세요.
@@ -642,7 +709,7 @@ Claude Code, Qwen Code, Codex에는 중간 상태가 없습니다. 켜지 않았
 
 **자동 완성에 `/i-have-adhd`가 없습니다.** 에이전트를 다시 시작하세요. 플러그인 인덱스는 시작 시 읽힙니다.
 
-**항상 활성화 플래그가 작동하지 않습니다.** 플러그인을 업데이트하고(`claude plugin marketplace update i-have-adhd`) 다시 시작하세요. 훅은 시작 시 읽히며 플래그에는 `hooks/hooks.json`이 포함된 플러그인 버전이 필요합니다.
+**항상 활성화 플래그가 작동하지 않습니다.** 플러그인을 업데이트하고(`claude plugin marketplace update i-have-adhd` 실행 후 `claude plugin update i-have-adhd@i-have-adhd`) 다시 시작하세요. 훅은 시작 시 읽히며 플래그에는 `hooks/hooks.json`이 포함된 플러그인 버전이 필요합니다.
 
 **`claude plugin marketplace add`가 실패합니다.** `owner/repo` 형식을 사용하세요. 로컬 경로는 `.claude-plugin/`이 아니라 저장소 루트를 가리켜야 합니다.
 

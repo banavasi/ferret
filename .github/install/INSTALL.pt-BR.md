@@ -47,7 +47,7 @@ A pessoa que lê tem TDAH. Estruture cada resposta para que ela possa agir:
 6. Dê estimativas de tempo em unidades concretas, nunca "um pouco".
 7. Após uma alteração, mostre o que agora funciona.
 8. Erros: informe local, causa e correção, sem drama.
-9. Ordene listas longas por relevância e procure usar no máximo cinco itens por grupo, sem omitir itens relevantes.
+9. Limite listas a 5 itens.
 10. Sem preâmbulo, recapitulação ou despedida.
 
 Exceções: explique por completo quando pedirem. Confirme antes de ações destrutivas. Após três tentativas de correção sem sucesso, pare e identifique a suposição duvidosa. Se o pedido for ambíguo, faça uma pergunta curta.
@@ -77,6 +77,7 @@ claude plugin list
 
 ```bash
 claude plugin marketplace update i-have-adhd
+claude plugin update i-have-adhd@i-have-adhd
 ```
 
 ### Desinstalar
@@ -163,7 +164,7 @@ A pessoa que lê tem TDAH. Estruture cada resposta para que ela possa agir:
 6. Dê estimativas de tempo em unidades concretas, nunca "um pouco".
 7. Após uma alteração, mostre o que agora funciona.
 8. Erros: informe local, causa e correção, sem drama.
-9. Ordene listas longas por relevância e procure usar no máximo cinco itens por grupo, sem omitir itens relevantes.
+9. Limite listas a 5 itens.
 10. Sem preâmbulo, recapitulação ou despedida.
 
 Exceções: explique por completo quando pedirem. Confirme antes de ações destrutivas. Após três tentativas de correção sem sucesso, pare e identifique a suposição duvidosa. Se o pedido for ambíguo, faça uma pergunta curta.
@@ -285,7 +286,7 @@ A pessoa que lê tem TDAH. Estruture cada resposta para que ela possa agir:
 6. Dê estimativas de tempo em unidades concretas, nunca "um pouco".
 7. Após uma alteração, mostre o que agora funciona.
 8. Erros: informe local, causa e correção, sem drama.
-9. Ordene listas longas por relevância e procure usar no máximo cinco itens por grupo, sem omitir itens relevantes.
+9. Limite listas a 5 itens.
 10. Sem preâmbulo, recapitulação ou despedida.
 
 Exceções: explique por completo quando pedirem. Confirme antes de ações destrutivas. Após três tentativas de correção sem sucesso, pare e identifique a suposição duvidosa. Se o pedido for ambíguo, faça uma pergunta curta.
@@ -349,7 +350,7 @@ A pessoa que lê tem TDAH. Estruture cada resposta para que ela possa agir:
 6. Dê estimativas de tempo em unidades concretas, nunca "um pouco".
 7. Após uma alteração, mostre o que agora funciona.
 8. Erros: informe local, causa e correção, sem drama.
-9. Ordene listas longas por relevância e procure usar no máximo cinco itens por grupo, sem omitir itens relevantes.
+9. Limite listas a 5 itens.
 10. Sem preâmbulo, recapitulação ou despedida.
 
 Exceções: explique por completo quando pedirem. Confirme antes de ações destrutivas. Após três tentativas de correção sem sucesso, pare e identifique a suposição duvidosa. Se o pedido for ambíguo, faça uma pergunta curta.
@@ -381,6 +382,71 @@ Em uma sessão do Kimi Code, execute `/plugins`, posicione o cursor em **I Have 
 
 </details>
 
+
+<details>
+<summary><strong>OpenCode</strong></summary>
+
+O plugin suporta OpenCode V1 **1.18.29 ou superior** e V2. Registra a skill e o comando `/i-have-adhd` e oferece o modo sempre ativo opcional. Versões anteriores do V1 precisam ser atualizadas ou usar o plugin da versão anterior da skill.
+
+### Instalação
+
+Para usar em todos os projetos:
+
+```bash
+git clone https://github.com/ayghri/i-have-adhd ~/.config/opencode/vendor/i-have-adhd
+mkdir -p ~/.config/opencode/plugins
+cat > ~/.config/opencode/plugins/i-have-adhd.js <<'EOF'
+export { default } from '../vendor/i-have-adhd/.opencode/plugins/i-have-adhd.mjs';
+EOF
+```
+
+Para uma instalação V1 existente, mantenha a entrada `plugin` em `opencode.json`. Se mudar para o carregador acima, remova essa entrada.
+
+Inicie uma nova sessão e digite `/i-have-adhd`. As regras permanecem até você dizer `stop adhd mode` ou `normal mode`.
+
+#### Apenas skill e comando (sem modo sempre ativo)
+
+Como alternativa, copie a skill e o comando do repositório para os diretórios globais do OpenCode:
+
+```bash
+mkdir -p ~/.config/opencode/skills/i-have-adhd ~/.config/opencode/commands
+cp skills/i-have-adhd/SKILL.md ~/.config/opencode/skills/i-have-adhd/SKILL.md
+cp .opencode/command/i-have-adhd.md ~/.config/opencode/commands/i-have-adhd.md
+```
+
+### Verificação
+
+Inicie o OpenCode, digite `/` e confirme que `i-have-adhd` aparece na lista de comandos.
+
+### Atualização
+
+```bash
+git -C ~/.config/opencode/vendor/i-have-adhd pull
+```
+
+Na instalação por cópia, atualize o repositório e copie novamente os dois arquivos.
+
+### Desinstalação
+
+Remova `~/.config/opencode/plugins/i-have-adhd.js`. Na instalação por cópia, remova `~/.config/opencode/skills/i-have-adhd/` e `~/.config/opencode/commands/i-have-adhd.md`. Para uma instalação V1 já configurada, remova a entrada `plugin` correspondente.
+
+### Sempre ativo (opcional)
+
+Requer o plugin. Criar o arquivo de sinalização adiciona todas as regras ao prompt do sistema em cada turno:
+
+```bash
+touch ~/.config/opencode/.i-have-adhd-always
+```
+
+`stop adhd mode` ou `normal mode` pede ao agente que volte ao estilo padrão na sessão atual. Remova o arquivo para interromper a inclusão automática:
+
+```bash
+rm ~/.config/opencode/.i-have-adhd-always
+```
+
+Se `XDG_CONFIG_HOME` estiver definido, substitua `~/.config` nesses caminhos por esse diretório.
+
+</details>
 
 <details>
 <summary><strong>Pi</strong></summary>
@@ -450,7 +516,7 @@ A pessoa que lê tem TDAH. Estruture cada resposta para que ela possa agir:
 6. Dê estimativas de tempo em unidades concretas, nunca "um pouco".
 7. Após uma alteração, mostre o que agora funciona.
 8. Erros: informe local, causa e correção, sem drama.
-9. Ordene listas longas por relevância e procure usar no máximo cinco itens por grupo, sem omitir itens relevantes.
+9. Limite listas a 5 itens.
 10. Sem preâmbulo, recapitulação ou despedida.
 
 Exceções: explique por completo quando pedirem. Confirme antes de ações destrutivas. Após três tentativas de correção sem sucesso, pare e identifique a suposição duvidosa. Se o pedido for ambíguo, faça uma pergunta curta.
@@ -519,7 +585,8 @@ Prefere o sistema de arquivos? Clone o repositório e coloque a pasta da skill n
 
 ```bash
 git clone https://github.com/ayghri/i-have-adhd
-cp -R i-have-adhd/skills/i-have-adhd ~/.config/zed/skills/
+mkdir -p ~/.agents/skills
+cp -R i-have-adhd/skills/i-have-adhd ~/.agents/skills/
 ```
 
 ### Verificar
@@ -532,7 +599,7 @@ Importe novamente pela mesma URL (sobrescreve) ou copie a pasta de novo após `g
 
 ### Desinstalar
 
-Remova `i-have-adhd` do gerenciador de Skills ou exclua `~/.config/zed/skills/i-have-adhd`.
+Remova `i-have-adhd` do gerenciador de Skills ou exclua `~/.agents/skills/i-have-adhd`.
 
 ### Sempre ativo (opcional)
 
@@ -551,7 +618,7 @@ A pessoa que lê tem TDAH. Estruture cada resposta para que ela possa agir:
 6. Dê estimativas de tempo em unidades concretas, nunca "um pouco".
 7. Após uma alteração, mostre o que agora funciona.
 8. Erros: informe local, causa e correção, sem drama.
-9. Ordene listas longas por relevância e procure usar no máximo cinco itens por grupo, sem omitir itens relevantes.
+9. Limite listas a 5 itens.
 10. Sem preâmbulo, recapitulação ou despedida.
 
 Exceções: explique por completo quando pedirem. Confirme antes de ações destrutivas. Após três tentativas de correção sem sucesso, pare e identifique a suposição duvidosa. Se o pedido for ambíguo, faça uma pergunta curta.
@@ -560,7 +627,7 @@ Exceções: explique por completo quando pedirem. Confirme antes de ações dest
 </details>
 
 <details>
-<summary><strong>Cursor, OpenCode, Amp e qualquer outro ambiente compatível com agent-skills</strong></summary>
+<summary><strong>Cursor, Amp e qualquer outro ambiente compatível com agent-skills</strong></summary>
 
 Funciona com qualquer ambiente que leia Agent Skills. Troque `-a <agent>` pelo seu.
 
@@ -621,7 +688,7 @@ A pessoa que lê tem TDAH. Estruture cada resposta para que ela possa agir:
 6. Dê estimativas de tempo em unidades concretas, nunca "um pouco".
 7. Após uma alteração, mostre o que agora funciona.
 8. Erros: informe local, causa e correção, sem drama.
-9. Ordene listas longas por relevância e procure usar no máximo cinco itens por grupo, sem omitir itens relevantes.
+9. Limite listas a 5 itens.
 10. Sem preâmbulo, recapitulação ou despedida.
 
 Exceções: explique por completo quando pedirem. Confirme antes de ações destrutivas. Após três tentativas de correção sem sucesso, pare e identifique a suposição duvidosa. Se o pedido for ambíguo, faça uma pergunta curta.
@@ -642,7 +709,7 @@ No Claude Code, Qwen Code e Codex não há meio-termo: se você não ativou, est
 
 **`/i-have-adhd` não aparece no preenchimento automático.** Reinicie o agente. O índice de plugins é lido na inicialização.
 
-**A flag de sempre ativo não funciona.** Atualize o plugin (`claude plugin marketplace update i-have-adhd`) e reinicie. Hooks são lidos na inicialização, e a flag exige a versão que inclui `hooks/hooks.json`.
+**A flag de sempre ativo não funciona.** Atualize o plugin (`claude plugin marketplace update i-have-adhd` e depois `claude plugin update i-have-adhd@i-have-adhd`) e reinicie. Hooks são lidos na inicialização, e a flag exige a versão que inclui `hooks/hooks.json`.
 
 **`claude plugin marketplace add` falha.** Use o formato `owner/repo`. Um caminho local deve apontar para a raiz do repositório, não para `.claude-plugin/`.
 
