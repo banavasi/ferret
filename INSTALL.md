@@ -514,6 +514,76 @@ Use slash command `/skill:ferret` to invoke the skill explicitly.
 </details>
 
 <details>
+<summary><strong>Muse (<code>muse</code>)</strong></summary>
+
+Muse installs the canonical skill directory as-is, sections included. No
+manifest or conversion step is needed.
+
+### Install
+
+```bash
+git clone https://github.com/banavasi/ferret
+muse skills install ferret/skills/ferret
+```
+
+The managed install records the source, so later updates refresh from it.
+Muse matches installed skills by their description. If it does not pick
+ferret up on its own, prefix the task with `Use the ferret skill`.
+
+### Verify
+
+```bash
+muse skills list
+```
+
+Confirm `ferret` appears with activation on. For detail:
+
+```bash
+muse skills inspect ferret
+```
+
+### Update
+
+```bash
+git -C ferret pull
+muse skills update ferret
+```
+
+If your copy predates the managed install (placed by hand-copy), run the
+`muse skills install` command above once instead; it records the source.
+
+### Uninstall
+
+```bash
+muse skills uninstall ferret
+```
+
+### Always-on (optional)
+
+Add to the project's `AGENTS.md` (`muse init` scaffolds one):
+
+```markdown
+## Output style
+
+Shape every response so it can be acted on:
+
+1. Lead with the answer or next action: command, path, or snippet first.
+2. Number multi-step work; one bounded action per step.
+3. End with one next action doable in under two minutes.
+4. Finish the current issue before raising a new one.
+5. Restate progress each turn ("step 3 of 5 done").
+6. Give time estimates in concrete units, never "a bit".
+7. After a change, show what now works.
+8. Errors: state location, cause, and fix. No drama.
+9. Cap lists to 5 items.
+10. No preamble, no recaps, no closers.
+
+Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
+```
+
+</details>
+
+<details>
 <summary><strong>OpenCode</strong></summary>
 
 The plugin supports OpenCode V1 **1.18.29+** and V2. It registers the skill and `/ferret` command, and adds optional always-on mode. Older V1 versions need an upgrade or the plugin from the previous skill release.

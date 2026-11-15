@@ -53,6 +53,7 @@ When debugging or changing one integration, begin with its entry point:
 | OMP | `package.json` (`omp`), `extensions/ferret.ts`, `extensions/context-compat.ts` |
 | OpenCode | `.opencode/plugins/ferret.mjs`, `.opencode/plugins/ferret.js`, `.opencode/command/ferret.md` |
 | Qwen, Kimi, Gemini | The corresponding manifest above, plus `GEMINI.md` for Gemini behavior |
+| Muse | `skills/ferret/SKILL.md`, `INSTALL.md` (no manifest; `muse skills install` takes the skill directory as-is) |
 
 ## Source-of-truth rules
 
