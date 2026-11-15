@@ -1,5 +1,6 @@
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -479,6 +480,7 @@ class EvaluationHarnessTest(unittest.TestCase):
             self.assertEqual(0, run_evals.run_evaluations(args))
             self.assertTrue(marker.exists())
 
+    @unittest.skipUnless(shutil.which("sh"), "POSIX shell required")
     def test_generation_runs_outside_the_repository(self):
         # An agent CLI adopts its working directory as project context. Run it
         # in this checkout and it answers prompts by inspecting the harness,
